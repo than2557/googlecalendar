@@ -188,9 +188,9 @@ type: "POST",
                 text:'บันทึกการจองเสร็จสิ้น.',
                 icon: 'success'
                 });
-          setTimeout(function(){
-        location.reload();
-          },3000);  
+          //   setTimeout(function(){
+          // location.reload();
+          //   },3000);  
   } 
     });
   }
@@ -201,11 +201,13 @@ type: "POST",
 
 function checktime(){
   var time_start = document.getElementById("time_start").value;
+  var startdate = document.getElementById("startdate").value;
   console.log(time_start)
+  console.log(startdate)
   $.ajax({
     type:"POST",
     url:"checktime.php",
-    data:{"time_start":time_start},
+    data:{"time_start":time_start,"startdate":startdate},
     success:function(data) {
       $('#data_room').html(data);    
   } 

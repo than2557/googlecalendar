@@ -1,13 +1,13 @@
 <?php 
-echo "TEST ajax";
+//echo "TEST ajax";
 date_default_timezone_set("Asia/Bangkok");
 require('configDB.php');
  $conn=$DBconnect;
 
  $time_start = isset($_POST['time_start']) ? $_POST['time_start'] : "";
+$start =  isset($_POST['startdate']) ? $_POST['startdate'] : "";
 
-
-$sqlroom = "SELECT * FROM room_tb WHERE room_tb.room_id not in (select event_tb.room_id from event_tb where event_tb.time_start = '$time_start') order by room_tb.room_id";
+$sqlroom = "SELECT * FROM room_tb WHERE room_tb.room_id not in (select event_tb.room_id from event_tb where event_tb.time_start = '$time_start' and event_tb.start ='$start') order by room_tb.room_id";
  $result_room = mysqli_query($conn,$sqlroom);
          echo $sqlroom;
          while($dataroom = mysqli_fetch_array($result_room)){
