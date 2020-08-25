@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib
+END
+class.soap_server.php
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/class.soap_server.php
+END
+class.wsdl.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/class.wsdl.php
+END
+nusoapmime.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/nusoapmime.php
+END
+changelog
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/changelog
+END
+class.soap_fault.php
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/class.soap_fault.php
+END
+class.soap_transport_http.php
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/class.soap_transport_http.php
+END
+class.wsdlcache.php
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/class.wsdlcache.php
+END
+class.soap_parser.php
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/class.soap_parser.php
+END
+class.nusoap_base.php
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/class.nusoap_base.php
+END
+class.soapclient.php
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/class.soapclient.php
+END
+class.xmlschema.php
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/class.xmlschema.php
+END
+nusoap.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/nusoap.php
+END
+idm-service.php
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/idm-service.php
+END
+class.soap_val.php
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/pea-e1-eai/!svn/ver/2246/Working/Document/ENG/Training/IDM/IDM-SSO-Training/idm_sso_library/php/lib/class.soap_val.php
+END

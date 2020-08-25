@@ -1,0 +1,196 @@
+<?php
+session_start();
+date_default_timezone_set("Asia/Bangkok");
+require('configDB.php');
+$conn=$DBconnect;
+require __DIR__ . '/vendor/autoload.php';
+$date = $_POST['date'];
+$eventname =$_POST['event'];
+// $start=$_POST['start'];
+// $end =$_POST['end'];
+$enddate = $_POST['enddate'];
+$time_period=$_POST['time_period'];
+$room_id=$_POST['room_id'];
+$username = $_POST['username'];
+$visitor = $_POST['visitor'];
+
+$start = $_POST['time_start'];
+$end = $_POST['time_end'];
+// if($time_period == 'fullday'){
+
+//   $start = "08:30:00";
+//   $end = "16:30:00";
+//   // echo $timestart;
+//   // echo $timeend;
+// }
+// elseif($time_period == 'halfdaymoring'){
+
+//   $start = "08:30:00";
+//   $end ="12:30:00";
+  
+// }
+// elseif($time_period =='halfdayafter'){
+
+//   $start = "13:00:00";
+//   $end = "16:30:00";
+
+// }
+
+echo $date.'<br>';
+echo $eventname.'<br>';
+echo $start.'<br>';
+echo $end.'<br>';
+echo $enddate.'<br>';
+echo $time_period.'<br>';
+echo $room_id.'<br>';
+echo $username;
+
+
+
+$dateend = date_create($enddate)->format('Y-m-d');
+$strNewDateend = date("Y-m-d", strtotime("+1 day", strtotime($dateend)));
+echo $strNewDateend;
+
+// $datecon = date_add($dateee, date_interval_create_from_date_string('1 days'));
+
+
+$sql ="INSERT INTO `event_tb`(`room_id`,`name_event`,`start`,`end`,`username`, `visitor`, `status_event`,`time_start`,`time_end`) VALUES ('$room_id','$eventname','$date','$enddate','$username','$visitor','1','$start','$end')";
+$Query = mysqli_query($conn,$sql);
+echo $sql;
+
+$sql2 = "UPDATE `room_tb` SET `room_status` = 1 WHERE room_id = $room_id";
+$Query = mysqli_query($conn,$sql2);
+echo $sql2;
+
+// if (php_sapi_name() != 'cli') {
+//     throw new Exception('This application must be run on the command line.');
+// }
+
+/**
+ * Returns an authorized API client.
+ * @return Google_Client the authorized client object
+ */
+function getClient()
+{
+    $client = new Google_Client();
+    $client->setApplicationName('Google Calendar API PHP Quickstart');
+    $client->setScopes(Google_Service_Calendar::CALENDAR);
+    $client->setAuthConfig(__DIR__ .'/credentials.json');
+    $client->setAccessType('offline');
+    $client->setPrompt('select_account consent');
+
+    // Load previously authorized token from a file, if it exists.
+    // The file token.json stores the user's access and refresh tokens, and is
+    // created automatically when the authorization flow completes for the first
+    // time.
+    $tokenPath = 'token.json';
+    if (file_exists($tokenPath)) {
+        $accessToken = json_decode(file_get_contents($tokenPath), true);
+        $client->setAccessToken($accessToken);
+    }
+
+    // If there is no previous token or it's expired.
+    if ($client->isAccessTokenExpired()) {
+        // Refresh the token if possible, else fetch a new one.
+        if ($client->getRefreshToken()) {
+            $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+        } else {
+            // Request authorization from the user.
+            $authUrl = $client->createAuthUrl();
+            printf("Open the following link in your browser:\n%s\n", $authUrl);
+            print 'Enter verification code: ';
+            $authCode = trim(fgets(STDIN));
+
+            // Exchange authorization code for an access token.
+            $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+            $client->setAccessToken($accessToken);
+
+            // Check to see if there was an error.
+            if (array_key_exists('error', $accessToken)) {
+                throw new Exception(join(', ', $accessToken));
+            }
+        }
+        // Save the token to a file.
+        if (!file_exists(dirname($tokenPath))) {
+            mkdir(dirname($tokenPath), 0700, true);
+        }
+        file_put_contents($tokenPath, json_encode($client->getAccessToken()));
+    }
+    return $client;
+}
+
+
+// Get the API client and construct the service object.
+$client = getClient();
+$service = new Google_Service_Calendar($client);
+
+// Print the next 10 events on the user's calendar.
+$calendarId = 'primary';
+$optParams = array(
+  'maxResults' => 10,
+  'orderBy' => 'startTime',
+  'singleEvents' => true,
+  'timeMin' => date('c'),
+);
+
+
+$results = $service->events->listEvents($calendarId, $optParams);
+$events = $results->getItems();
+
+
+
+// Refer to the PHP quickstart on how to setup the environment:
+// https://developers.google.com/calendar/quickstart/php
+// Change the scope to Google_Service_Calendar::CALENDAR and delete any stored
+// credentials.
+
+$event = new Google_Service_Calendar_Event(array(
+    'summary' => $eventname,
+    'location' => 'หอประชุมอยุธยา',
+    'description' => 'การประชุมทดลอง.',  
+    'start' => array(
+      'date' =>$date,
+      'timeZone' =>'Asia/Bangkok',
+     
+    ),
+    'end' => array( 
+      'date' =>$strNewDateend,
+      'timeZone' =>'Asia/Bangkok',
+  
+    ),
+    'recurrence' => array(
+      'RRULE:FREQ=DAILY;COUNT=1'
+    ),
+    'attendees' => array(
+      // array('email' => 'sujira.kitiwieng@gmail.com'),
+      array('email' => 'than2557@gmail.com'),
+      array('email'=>'15932021@aru.ac.th'),
+      array('email'=>'agencies.it@gmail.com')
+    ),
+    'reminders' => array(
+      'useDefault' => FALSE,
+      'overrides' => array(
+        array('method' => 'email', 'minutes' => 24 * 60),
+        array('method' => 'popup', 'minutes' => 10),
+      ),
+    ),
+  ));
+  print_r($event);
+  $calendarId = 'primary';
+  $event = $service->events->insert($calendarId, $event);
+  // printf('Event created: %s\n', $event->htmlLink);
+
+
+
+if (empty($events)) {
+    print "No upcoming events found.\n";
+} else {
+    print "Upcoming events:<br/>\n";
+    foreach ($events as $event) {
+        $start = $event->start->dateTime;
+        if (empty($start)) {
+            $start = $event->start->date;
+        }
+        printf("%s (%s)<br/>\n", $event->getSummary(), $start);
+    }
+}
