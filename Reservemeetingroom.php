@@ -20,15 +20,10 @@ date_default_timezone_set("Asia/Bangkok");
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css'>
      
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  
+    
 
-        <link href='./packages/core/main.css' rel='stylesheet' />
-        <link href='./packages/daygrid/main.css' rel='stylesheet' />
-        <link href='./packages/timegrid/main.css' rel='stylesheet' />
-        <script src='./packages/core/main.js'></script>
-        <script src='./packages/interaction/main.js'></script>
-        <script src='./packages/daygrid/main.js'></script>
-        <script src='./packages/timegrid/main.js'></script>
-        <link rel="icon" type="img/png" href="iconpea.png"/>
 
         <!-- partial -->
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -37,42 +32,15 @@ date_default_timezone_set("Asia/Bangkok");
         <script src='https://cdnjs.cloudflare.com/ajax/libs/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
         <!-- <script src="./script.js"> -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        
-<script src='https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'></script>
-<link rel="stylesheet" type="text/css" href="datatables.css"/>
- 
-<script type="text/javascript" src="datatables.js"></script>
+        <script src="js-use/sb-admin-2.min.js"></script>
+
+
 
 
     <title>จองห้องประชุม</title>
 </head>
 <script>
-// $(document).ready( function () {
-//     $('#myTable').DataTable({  
-      
-//       "columnDefs": [{ "width": "5%", "targets": 0 }],
-//   "language": {
-//               "sProcessing": "กำลังดำเนินการ...",
-//               "sLengthMenu": "แสดง_MENU_ แถว",
-//               "sZeroRecords": "ไม่พบข้อมูล",
-//               "sInfo": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
-//               "sInfoEmpty": "แสดง 0 ถึง 0 จาก 0 แถว",
-//               "sInfoFiltered": "(กรองข้อมูล _MAX_ ทุกแถว)",
-//               "sInfoPostFix": "",
-//               "sSearch": "ค้นหา:",
-//               "sUrl": "",
-//               "oPaginate": {
-//                             "sFirst": "เิริ่มต้น",
-//                             "sPrevious": "ก่อนหน้า",
-//                             "sNext": "ถัดไป",
-//                             "sLast": "สุดท้าย"
-//               }
-//      }
-     
-     
-//      });
-    
-// } );
+
 $(function(){
     var dtToday = new Date();
     
@@ -188,9 +156,9 @@ type: "POST",
                 text:'บันทึกการจองเสร็จสิ้น.',
                 icon: 'success'
                 });
-          //   setTimeout(function(){
-          // location.reload();
-          //   },3000);  
+          setTimeout(function(){
+        location.reload();
+          },3000);  
   } 
     });
   }
@@ -201,13 +169,11 @@ type: "POST",
 
 function checktime(){
   var time_start = document.getElementById("time_start").value;
-  var startdate = document.getElementById("startdate").value;
   console.log(time_start)
-  console.log(startdate)
   $.ajax({
     type:"POST",
     url:"checktime.php",
-    data:{"time_start":time_start,"startdate":startdate},
+    data:{"time_start":time_start},
     success:function(data) {
       $('#data_room').html(data);    
   } 
@@ -218,139 +184,225 @@ function checktime(){
 }  
 
 </script>
-<style>
-body {
-background:#f5f5f5;
-  margin: 40px 10px;
-  padding: 0;
-  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 14px;
-  width:100%;
-}
-
-#calendar {
-  max-width: 900px;
-  margin: 0 auto;
-}
 
 
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
+<body>
 
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .topnav {
-  overflow: hidden;
-  background-color: #ffffff ;
-  margin-top:-40px;
-  width:2000px;
-  margin-left:-40px;
-}
+<div class="modal" id="datainfo" tabindex="-1">
+                 
+                 <div class="modal-header"style="width:500px;background-color:#FAF1F1;margin-top:10%;margin-left:35%;">
+    <h4 class="modal-title" id="myModalLabel">การประชุม</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+     </button></div>   
+     <div class="modal-body" style="width:500px;background-color:#FAF1F1;margin-left:35%;"> 
+             <label for="title">หัวข้อการประชุม:</label><label for="title" id="title">หัวข้อการประชุม:</label><br>
+                   
+                    <label for="start">เวลาเริ่มประชุม:</label> <label for="start" id="event_start">เวลาเริ่มประชุม:</label><br>
 
-.topnav a {
-  float: left;
-  color: #000000;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
+                    <label for="end">เวลาสิ้นสุด:</label><label for="end" id="event_end">เวลาสิ้นสุด:</label><br>
+                     <input type="text" id="tp" value="" hidden>
+                   
+                     <button type="button"  class="btn btn-primary" onclick="fixdata()" data-dismiss="modal">ปิดการประชุม</button>
+                     
+                
+                 </div>
+                 </div>
 
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
 
-.topnav a.active {
-  background-color: #9d00d1;
-  color: white;
-}
-  .neumorphic {
-        border-radius: 1rem;
-        background: var(--color);
-        /* -webkit-animation: 1s -.3s 1 paused opacify;
-        animation: 1s -.3s 1 paused opacify; */
-        -webkit-backdrop-filter: blur(1.5rem);
-        backdrop-filter: blur(1.5rem);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: -0.25rem -0.25rem 0.5rem rgba(255, 255, 255, 0.07), 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.12), -0.75rem -0.75rem 1.75rem rgba(255, 255, 255, 0.07), 0.75rem 0.75rem 1.75rem rgba(0, 0, 0, 0.12), inset 8rem 8rem 8rem rgba(0, 0, 0, 0.05), inset -8rem -8rem 8rem rgba(255, 255, 255, 0.05);
-      }
-      @-webkit-keyframes opacify {
-        to {
-          background: transparent;
-        }
-      }
-      @keyframes opacify {
-        to {
-          background: transparent;
-        }
-      }
-      .neumorphic{
-        --color: hsl(210deg,10%,30%);
-        background: #ffffff;
-      }
-      @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
-*, *:before, *:after {
-  box-sizing: border-box;
-}
 
-body {
-  font: 14px/22px "Lato", Arial, sans-serif;
-  background: #faf7f7;
-}
+          <!-- Page Wrapper -->
+        <input id="room" value="1" hidden>
 
-.lighter-text {
-  color: #ABB0BE;
-}
+<div id="wrapper">
 
-.main-color-text {
-  color: #6394F8;
-}
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left" id="accordionSidebar">
+
+
+ <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+   <div class="sidebar-brand-icon">
+     <i><img src="img/icon.png" style="width:50px;"></i>
+   </div>
+   <div class="sidebar-brand-text mx-3">ระบบจองห้องประชุม</div>
+ </a>
+
+
+ <li class="nav-item">
+   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+     <i class="fas fa-fw fa-cog"></i>
+     <span class="textsize">เมนู</span>
+   </a>
+   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+     <div class="bg-white py-2 collapse-inner rounded">
+
+       <a class="collapse-item textsize" href="Reservemeetingroom.php">จองห้องประชุม</a>
+       <a class="collapse-item textsize" href="cards.html">----</a>
+     </div>
+   </div>
+ </li>
+
+
+ <li class="nav-item">
+   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+     <i class="fas fa-fw fa-table"></i>
+     <span>รายงาน</span>
+   </a>
+   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+     <div class="bg-white py-2 collapse-inner rounded">
+      
+       <a class="collapse-item" href="utilities-color.html">Colors</a>
+       <a class="collapse-item" href="utilities-border.html">Borders</a>
+       <a class="collapse-item" href="utilities-animation.html">Animations</a>
+       <a class="collapse-item" href="utilities-other.html">Other</a>
+     </div>
+   </div>
+ </li>
+
+
+ <li class="nav-item">
+   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+     <i class="fas fa-fw fa-folder"></i>
+     <span>--</span>
+   </a>
+   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+     <div class="bg-white py-2 collapse-inner rounded">
+       <h6 class="collapse-header">Login Screens:</h6>
+       <a class="collapse-item" href="login.html">Login</a>
+       <a class="collapse-item" href="register.html">Register</a>
+       <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+       <div class="collapse-divider"></div>
+       <h6 class="collapse-header">Other Pages:</h6>
+       <a class="collapse-item" href="404.html">404 Page</a>
+       <a class="collapse-item" href="blank.html">Blank Page</a>
+     </div>
+   </div>
+ </li>
+
+ <li class="nav-item">
+   <a class="nav-link" href="charts.html">
+     <i class="fas fa-fw fa-chart-area"></i>
+     <span>Charts</span></a>
+ </li>
+
+
+ <hr class="sidebar-divider d-none d-md-block">
+
+
+</ul>
+
+<!-- End of Sidebar -->
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+<!-- Main Content -->
+<div id="content">
+
+ <!-- Topbar -->
+ <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+ <h1 class="h3 mb-0 text-gray-800">ระบบจองห้องประชุม</h1>
+  
+   <ul class="navbar-nav ml-auto">
+
+
+ 
+
+     <div class="topbar-divider d-none d-sm-block"></div>
+
+     <!-- Nav Item - User Information -->
+     <li class="nav-item dropdown no-arrow">
+       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo$_SESSION['name'];  ?></span>
+         
+         <img class="img-profile rounded-circle material-icons" src="img/account.png">
+       </a>
+       <!-- Dropdown - User Information -->
+       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="logout.php">
+           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 "></i>
+           ออกจากระบบ
+         </a>
+       </div>
+     </li>
+
+   </ul>
+
+ </nav>
+
+ 
+
+   
+
+
+
+   
+
+
+
+
+
+
+
+
+
+  
+       
+
+
+
+
+
+
+
 
     
+     
 
-</style>
 
-</style>
-<body>
-<div class="topnav">
-  <a class="active" href="index_admin.php" style="margin-left:20px;">หน้าหลัก</a>
-  <a href="displaydata.php" style="margin-left:20px;">แก้ไขข้อมูล</a>
-  <a  style="margin-left:1%;color: back;">ยินดีต้อนรับ:&nbsp;<?php echo $_SESSION['name']; ?> </a><a style="color: back;">เลขประจำตัวพนักงาน:&nbsp;<?php echo $_SESSION['username'];?></a>
-  <a href="logout.php" style="margin-left:50%;">ออกจากระบบ</a>
+
+
 <input  id="visitor" value="<?php echo$_SESSION['name'];?>"hidden>
 <input id="username"  value="<?php echo$_SESSION['username'];?>" hidden>
-  <!-- <a style="margin-left:60%;color: white;">จำนวนการจองห้องประชุม<a> -->
+ 
+
+
+<div class="container-sm themed-container d-flex" style="margin-left: 210px;">
+<div class="card">
+<div class="card-header  d-flex flex-row align-items-center justify-content-between ">
+      <h2>จองห้องประชุม</h2>
+ </div>
+ <div class="card">
+<div class="container">
+<div class="row shadow" > 
+  <div class="col">
+  <label>หัวข้อการประชุม:</label> <input class="form-control" type="text" id="event">
+
+  </div>
+  <div class="col">
+  <label>วันที่:</label>
+<input class="form-control"  type="date" id="startdate" onchange="selectroommeeting()">
+    </div>
+<div class="col">
+    <label>ถึงวันที่</label>
+<input class="form-control" placeholder="yyyy-MM-dd" id="enddate"  onchange="checkenddate()" type="date"/>
+
+ </div>
+ <div class="col">
+ <label>ช่วงเวลา:</label>
+<input type="time" id="time_start"class="form-control"  onchange="checktime()">
 </div>
-
-<div class="neumorphic" style="width:1200px;height:100px;margin-left:15%;margin-top:2%;">
-<div class="row"style="margin-left:30%;margin-top:3.2%;">
-
-<label style="margin-left:-40%;">หัวข้อการประชุม:</label> <input class="form-control" type="text" id="event" style="width:200px;margin-top:-10px;">
-<label style="margin-left:1%;margin-top:-0.1%;">วันที่:</label><input class="form-control" style="width:200px;margin-top:-10px;" type="date" id="startdate" onchange="selectroommeeting()">
-<label>ถึงวันที่</label>
-<input class="form-control" placeholder="yyyy-MM-dd" id="enddate"  onchange="checkenddate()" style="width:200px;margin-top:-10px;"type="date"/>
-<label>ช่วงเวลา:</label>
-<input type="time" id="time_start"class="form-control" style="width:100px;margin-top:-10px;" onchange="checktime()">
+<div class="col">
 <label>ถึง:</label>
-<input type="time" id="time_end" class="form-control" style="width:100px;margin-top:-10px;">
- <!-- <select id="time_period" style="width:200px;margin-top:-10px;" class="form-control">
-                                <option value="fullday">เต็มวัน</option>
-                                <option value="halfdaymoring">ครึ่งวันเช้า</option>
-                                <option value="halfdayafter">ครึ่งวันบ่าย</option>
-                                </select> -->
+<input type="time" id="time_end" class="form-control">
 </div>
 </div>
-    
-  <div class="neumorphic" style="width: 1000px;margin-left:20%;margin-top:1%;">
-  <table class="table table-bordered" id="table" style="width:800px;height:400px ;border-radius: 100%;margin-left:7%;margin-top:5%;">
+</div>
+<br>
+<br>
+<div>
+  <table class="table table-bordered" id="table">
   <thead>
     <tr>
       <th>รหัสห้องประชุม</th>
@@ -364,6 +416,11 @@ body {
   <tbody id="data_room">
   </tbody>
   <table>
+</div>
+
+
+</div>
+</div>
 </div>
         
 

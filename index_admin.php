@@ -27,36 +27,14 @@ date_default_timezone_set("Asia/Bangkok");
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css'>
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>    
-        <!-- <script type="text/javascript" src="js/fullcalendar-2.1.1/lib/moment.min.js"></script>
-      <script type="text/javascript" src="js/fullcalendar-2.1.1/fullcalendar.min.js"></script>
-      <script type="text/javascript" src="js/fullcalendar-2.1.1/lang/th.js"></script>    -->
+
 
 
       <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-      <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-
-
- 
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="css/index_admin.css">
-
-        <!-- <link href='./packages/core/main.css' rel='stylesheet' />
-        <link href='./packages/daygrid/main.css' rel='stylesheet' />
-        <link href='./packages/timegrid/main.css' rel='stylesheet' />
-        <script src='./packages/core/main.js'></script>
-        <script src='./packages/interaction/main.js'></script>
-        <script src='./packages/daygrid/main.js'></script>
-        <script src='./packages/timegrid/main.js'></script> -->
-
-        <!-- <script  src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-        <script  src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js"></script>
-        <script  src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/locales-all.min.js"></script>
-        <script  src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/locales-all.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js"></script> -->
-        
 
 <link rel="stylesheet" href="js/fullcalendar-5.3.0/lib/main.css">
 <script src="js/fullcalendar-5.3.0/lib/main.min.js"></script>
@@ -65,14 +43,14 @@ date_default_timezone_set("Asia/Bangkok");
 
         <link rel="icon" type="img/png" href="iconpea.png"/>
         
-        <!-- partial -->
+
      
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-        <!-- <script src="./script.js"> -->
+       
       
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="js-use/sb-admin-2.min.js"></script>
@@ -150,16 +128,15 @@ function selectroom(){
                             console.log(get);
      var calendarEl = document.getElementById('calendar');
      calendarEl.innerHTML= '';
-     var calendar = new FullCalendar.Calendar(calendarEl, {
-       
+     var calendar = new FullCalendar.Calendar(calendarEl, { 
     height: 650,
     themeSystem: 'bootstrap',
-    header: {
-      left: 'prev,next today',
+    headerToolbar: {
+        left: 'prev,next today',
       center: 'title',
       right:'dayGridMonth,timeGridWeek,timeGridDay'
         
-    },
+      },
     initialDate: date_today,
     locale: 'th',
     navLinks: true, // can click day/week names to navigate views
@@ -363,8 +340,10 @@ $( document ).ready(function() {
                     </div>
 
 
+
              <!-- Page Wrapper -->
            <input id="room" value="1" hidden>
+
   <div id="wrapper">
 
 <!-- Sidebar -->
@@ -379,11 +358,6 @@ $( document ).ready(function() {
     </a>
 
 
-
-
- 
-
-  
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
@@ -392,8 +366,8 @@ $( document ).ready(function() {
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
   
-          <a class="collapse-item textsize" href="buttons.html">Buttons</a>
-          <a class="collapse-item textsize" href="cards.html">Cards</a>
+          <a class="collapse-item textsize" href="Reservemeetingroom.php">จองห้องประชุม</a>
+          <a class="collapse-item textsize" href="cards.html">----</a>
         </div>
       </div>
     </li>
@@ -486,6 +460,7 @@ $( document ).ready(function() {
       </ul>
 
     </nav>
+    
     <!-- End of Topbar -->
 
 
@@ -501,15 +476,14 @@ $( document ).ready(function() {
 
       <!-- Content Row -->
     
-      <div id="Reserve"class="container-sm themed-container d-flex" style="margin-left: 210px;">
-      <div class="card">
-     
-      <div class="card-header  d-flex flex-row align-items-center justify-content-between ">
+   
+      <!-- <section id="Reserve">
+<div class="container-sm themed-container d-flex" style="margin-left: 210px;">
+<div class="card">
+<div class="card-header  d-flex flex-row align-items-center justify-content-between ">
       <h2>จองห้องประชุม</h2>
  </div>
  <div class="card">
-
-<!-- card จองห้องประชุม-->
 <div class="container">
 <div class="row shadow" > 
   <div class="col">
@@ -554,11 +528,12 @@ $( document ).ready(function() {
   <table>
 </div>
 
-<div>
+
 </div>
 </div>
 </div>
-</div>
+ </section> -->
+
 
 
         <div class="d-flex p-3 col-sm">
@@ -574,7 +549,7 @@ $( document ).ready(function() {
                        } ?> 
                    </select>
             </div>
-            <!-- Card Body -->
+          
             <div class="card" style="width:1000px;">
       
 <div>
@@ -588,11 +563,14 @@ $( document ).ready(function() {
 </div>
 
 </div>
-<div id='calendar' style="width:auto;"></div>
+
+<div id='calendar'></div>
            
             </div>
           </div>
         </div>
+
+
 
 
 
