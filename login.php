@@ -23,6 +23,7 @@
 		//require_once("inc/db_connect.php"); 
 		$username=$_POST["idem"];
 		$password=md5($_POST["password"]);
+		echo $username.'<br>';
 		echo $password;
 		$sql="select * from empolyee where username='$username' and password='$password'";
 		$Query=$conn->query($sql);
