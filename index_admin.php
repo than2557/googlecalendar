@@ -155,9 +155,9 @@ function selectroom(){
     height: 650,
     themeSystem: 'bootstrap',
     header: {
-      start: 'title', // will normally be on the left. if RTL, will be on the right
-  center: '',
-  end: 'today prev,next' // will normally be on the right. if RTL, will be on the left
+      left: 'prev,next today',
+      center: 'title',
+      right:'dayGridMonth,timeGridWeek,timeGridDay'
         
     },
     initialDate: date_today,
@@ -311,9 +311,9 @@ $( document ).ready(function() {
       themeSystem: 'bootstrap',
       height:650,
       headerToolbar: {
-        start: 'title', // will normally be on the left. if RTL, will be on the right
-  center: '',
-  end: 'today prev,next' // will normally be on the right. if RTL, will be on the left
+        left: 'prev,next today',
+      center: 'title',
+      right:'dayGridMonth,timeGridWeek,timeGridDay'
         
       },
       initialDate: date_today,
@@ -368,9 +368,9 @@ $( document ).ready(function() {
   <div id="wrapper">
 
 <!-- Sidebar -->
-  <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
+  <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
+
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
       <div class="sidebar-brand-icon">
         <i><img src="img/icon.png" style="width:50px;"></i>
@@ -378,19 +378,12 @@ $( document ).ready(function() {
       <div class="sidebar-brand-text mx-3">ระบบจองห้องประชุม</div>
     </a>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
+
+
  
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
- 
-
-    <!-- Nav Item - Pages Collapse Menu -->
+  
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
@@ -398,14 +391,14 @@ $( document ).ready(function() {
       </a>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+  
           <a class="collapse-item textsize" href="buttons.html">Buttons</a>
           <a class="collapse-item textsize" href="cards.html">Cards</a>
         </div>
       </div>
     </li>
 
-    <!-- Nav Item - Utilities Collapse Menu -->
+
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-table"></i>
@@ -422,13 +415,7 @@ $( document ).ready(function() {
       </div>
     </li>
 
-    <!-- Divider -->
-    
-
-    <!-- Heading -->
-    
-
-    <!-- Nav Item - Pages Collapse Menu -->
+  
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
         <i class="fas fa-fw fa-folder"></i>
@@ -448,21 +435,18 @@ $( document ).ready(function() {
       </div>
     </li>
 
-    <!-- Nav Item - Charts -->
     <li class="nav-item">
       <a class="nav-link" href="charts.html">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Charts</span></a>
     </li>
 
-    <!-- Nav Item - Tables -->
-    
-    <!-- Divider -->
+
     <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- Sidebar Toggler (Sidebar) -->
   
   </ul>
+ 
 <!-- End of Sidebar -->
 
 <!-- Content Wrapper -->
@@ -473,42 +457,11 @@ $( document ).ready(function() {
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-      <!-- Sidebar Toggle (Topbar) -->
-      <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
-      </button> -->
-
-      <!-- Topbar Search -->
-   
-
-      <!-- Topbar Navbar -->
+    <h1 class="h3 mb-0 text-gray-800">ระบบจองห้องประชุม</h1>
+     
       <ul class="navbar-nav ml-auto">
 
-        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-        <li class="nav-item dropdown no-arrow d-sm-none">
-          <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-search fa-fw"></i>
-          </a>
-          <!-- Dropdown - Messages -->
-          <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-            <form class="form-inline mr-auto w-100 navbar-search">
-              <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </li>
-
  
-    
-
-        <!-- Nav Item - Messages -->
     
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -538,27 +491,82 @@ $( document ).ready(function() {
 
     
     <!-- Begin Page Content -->
-    <div class="container-fluid">
+ 
 
       <!-- Page Heading -->
-      <div class="d-sm-flex align-items-center justify-content-between mb-4 p-3 mx-auto" >
+      <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4 p-3 mx-auto" >
         <h1 style="margin-left:200px;" class="h3 mb-0 text-gray-800">ระบบจองห้องประชุม</h1>
         
-      </div>
+      </div> -->
 
       <!-- Content Row -->
-      <div class="row">
+    
+      <div id="Reserve"class="container-sm themed-container d-flex" style="margin-left: 210px;">
+      <div class="card">
+     
+      <div class="card-header  d-flex flex-row align-items-center justify-content-between ">
+      <h2>จองห้องประชุม</h2>
+ </div>
+ <div class="card">
+
+<!-- card จองห้องประชุม-->
+<div class="container">
+<div class="row shadow" > 
+  <div class="col">
+  <label>หัวข้อการประชุม:</label> <input class="form-control" type="text" id="event">
+
+  </div>
+  <div class="col">
+  <label>วันที่:</label>
+<input class="form-control"  type="date" id="startdate" onchange="selectroommeeting()">
+    </div>
+<div class="col">
+    <label>ถึงวันที่</label>
+<input class="form-control" placeholder="yyyy-MM-dd" id="enddate"  onchange="checkenddate()" type="date"/>
+
+ </div>
+ <div class="col">
+ <label>ช่วงเวลา:</label>
+<input type="time" id="time_start"class="form-control"  onchange="checktime()">
+</div>
+<div class="col">
+<label>ถึง:</label>
+<input type="time" id="time_end" class="form-control">
+</div>
+</div>
+</div>
+<br>
+<br>
+<div>
+  <table class="table table-bordered" id="table">
+  <thead>
+    <tr>
+      <th>รหัสห้องประชุม</th>
+      <th>ชื่อห้องประชุม</th>
+      <th>ที่ตั้งห้องประชุม</th>
+      <th>ชนิดห้อง</th>
+      <th>จำนวนคนที่รองรับ</th>
+      <th>จองห้องประชุม</th>
+    </tr>
+  </thead>
+  <tbody id="data_room">
+  </tbody>
+  <table>
+</div>
+
+<div>
+</div>
+</div>
+</div>
+</div>
 
 
-      <div class="row">
-
-        <!-- Area Chart -->
-        <div class="d-flex p-3 col-sm" style="margin-left:200px;">
+        <div class="d-flex p-3 col-sm">
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
-            <div class="card-header  d-flex flex-row align-items-center justify-content-between"style="width:1000px;">
+            <div class="card-header  d-flex flex-row align-items-center justify-content-between">
         
-            <h6 class="m-0 font-weight-bold text-primary">ข้อมูลการจองห้องประชุม:</h6>
+            <h6 class="m-0 font-weight-bold">ข้อมูลการจองห้องประชุม:</h6>
 <select class="form-control" name="select_room" style="width: 200px;" id="select_room" onchange="selectroom()">
                       <option value="">--เลือกห้องประชุม--</option>
                        <?php while($row = mysqli_fetch_array($result)){ 
@@ -586,8 +594,21 @@ $( document ).ready(function() {
           </div>
         </div>
 
+
+
+
+
+
+
      
           
+
+
+
+
+
+
+
 
         <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
             <div class="modal-dialog">
