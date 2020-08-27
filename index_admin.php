@@ -129,7 +129,7 @@ function selectroom(){
      var calendarEl = document.getElementById('calendar');
      calendarEl.innerHTML= '';
      var calendar = new FullCalendar.Calendar(calendarEl, { 
-    height: 650,
+    height: 700,
     themeSystem: 'bootstrap',
     headerToolbar: {
         left: 'prev,next today',
@@ -286,7 +286,7 @@ $( document ).ready(function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
       themeSystem: 'bootstrap',
-      height:650,
+      height:700,
       headerToolbar: {
         left: 'prev,next today',
       center: 'title',
@@ -345,9 +345,9 @@ $( document ).ready(function() {
            <input id="room" value="1" hidden>
 
   <div id="wrapper">
-
+  <!-- bg-gradient-success -->
 <!-- Sidebar -->
-  <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left" id="accordionSidebar">
+  <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
 
 
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -361,13 +361,13 @@ $( document ).ready(function() {
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
-        <span class="textsize">เมนู</span>
+        <span class="mb-0" style="font-size:20px;">เมนู</span>
       </a>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
   
-          <a class="collapse-item textsize" href="Reservemeetingroom.php">จองห้องประชุม</a>
-          <a class="collapse-item textsize" href="cards.html">----</a>
+          <a class="collapse-item mb-0" style="font-size:20px;"href="Reservemeetingroom.php">จองห้องประชุม</a>
+          <a class="collapse-item mb-0" style="font-size:20px;" href="addmeetingroom_form.php">เพิ่มห้องประชุม</a>
         </div>
       </div>
     </li>
@@ -376,7 +376,7 @@ $( document ).ready(function() {
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-table"></i>
-        <span>รายงาน</span>
+        <span style="font-size:20px;">รายงาน</span>
       </a>
       <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
@@ -464,85 +464,16 @@ $( document ).ready(function() {
     <!-- End of Topbar -->
 
 
-    
-    <!-- Begin Page Content -->
- 
-
-      <!-- Page Heading -->
-      <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4 p-3 mx-auto" >
-        <h1 style="margin-left:200px;" class="h3 mb-0 text-gray-800">ระบบจองห้องประชุม</h1>
-        
-      </div> -->
-
-      <!-- Content Row -->
-    
-   
-      <!-- <section id="Reserve">
-<div class="container-sm themed-container d-flex" style="margin-left: 210px;">
-<div class="card">
-<div class="card-header  d-flex flex-row align-items-center justify-content-between ">
-      <h2>จองห้องประชุม</h2>
- </div>
- <div class="card">
-<div class="container">
-<div class="row shadow" > 
-  <div class="col">
-  <label>หัวข้อการประชุม:</label> <input class="form-control" type="text" id="event">
-
-  </div>
-  <div class="col">
-  <label>วันที่:</label>
-<input class="form-control"  type="date" id="startdate" onchange="selectroommeeting()">
-    </div>
-<div class="col">
-    <label>ถึงวันที่</label>
-<input class="form-control" placeholder="yyyy-MM-dd" id="enddate"  onchange="checkenddate()" type="date"/>
-
- </div>
- <div class="col">
- <label>ช่วงเวลา:</label>
-<input type="time" id="time_start"class="form-control"  onchange="checktime()">
-</div>
-<div class="col">
-<label>ถึง:</label>
-<input type="time" id="time_end" class="form-control">
-</div>
-</div>
-</div>
-<br>
-<br>
-<div>
-  <table class="table table-bordered" id="table">
-  <thead>
-    <tr>
-      <th>รหัสห้องประชุม</th>
-      <th>ชื่อห้องประชุม</th>
-      <th>ที่ตั้งห้องประชุม</th>
-      <th>ชนิดห้อง</th>
-      <th>จำนวนคนที่รองรับ</th>
-      <th>จองห้องประชุม</th>
-    </tr>
-  </thead>
-  <tbody id="data_room">
-  </tbody>
-  <table>
-</div>
-
-
-</div>
-</div>
-</div>
- </section> -->
 
 
 
-        <div class="d-flex p-3 col-sm">
+        <div class="d-flex p-3 col-sm" style="margin-left: 300px;">
           <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header  d-flex flex-row align-items-center justify-content-between">
         
             <h6 class="m-0 font-weight-bold">ข้อมูลการจองห้องประชุม:</h6>
-<select class="form-control" name="select_room" style="width: 200px;" id="select_room" onchange="selectroom()">
+           <select class="form-control" name="select_room" style="width: 200px;" id="select_room" onchange="selectroom()">
                       <option value="">--เลือกห้องประชุม--</option>
                        <?php while($row = mysqli_fetch_array($result)){ 
                            echo '<option value="'.$row['room_id'].'">'.$row['room_name'].'</option>'; 
@@ -550,7 +481,7 @@ $( document ).ready(function() {
                    </select>
             </div>
           
-            <div class="card" style="width:1000px;">
+            <div class="card" style="width:1200px;">
       
 <div>
 

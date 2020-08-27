@@ -19,7 +19,7 @@ date_default_timezone_set("Asia/Bangkok");
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css'>
-     
+        <link rel="icon" type="img/png" href="iconpea.png"/>
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
   
     
@@ -40,7 +40,22 @@ date_default_timezone_set("Asia/Bangkok");
     <title>จองห้องประชุม</title>
 </head>
 <script>
+function backindex(){
+var level = document.getElementById("level").value;
+console.log(level);
+if(level == 1){
+  open('index_admin.php');
+  close('Reservemeetingroom.php');
+ 
+ 
+}
+else{
+  open('index_user.php');
+  close('Reservemeetingroom.php');
 
+
+}
+}
 $(function(){
     var dtToday = new Date();
     
@@ -188,56 +203,36 @@ function checktime(){
 
 <body>
 
-<div class="modal" id="datainfo" tabindex="-1">
-                 
-                 <div class="modal-header"style="width:500px;background-color:#FAF1F1;margin-top:10%;margin-left:35%;">
-    <h4 class="modal-title" id="myModalLabel">การประชุม</h4>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-     <span aria-hidden="true">&times;</span>
-     </button></div>   
-     <div class="modal-body" style="width:500px;background-color:#FAF1F1;margin-left:35%;"> 
-             <label for="title">หัวข้อการประชุม:</label><label for="title" id="title">หัวข้อการประชุม:</label><br>
-                   
-                    <label for="start">เวลาเริ่มประชุม:</label> <label for="start" id="event_start">เวลาเริ่มประชุม:</label><br>
-
-                    <label for="end">เวลาสิ้นสุด:</label><label for="end" id="event_end">เวลาสิ้นสุด:</label><br>
-                     <input type="text" id="tp" value="" hidden>
-                   
-                     <button type="button"  class="btn btn-primary" onclick="fixdata()" data-dismiss="modal">ปิดการประชุม</button>
-                     
-                
-                 </div>
-                 </div>
 
 
 
           <!-- Page Wrapper -->
-        <input id="room" value="1" hidden>
-
+        <!-- <input id="room" value="1" hidden> -->
+<input id="level" value="<?php echo $_SESSION['level'];  ?>" hidden>
 <div id="wrapper">
 
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion fixed-left" id="accordionSidebar">
 
 
- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-   <div class="sidebar-brand-icon">
-     <i><img src="img/icon.png" style="width:50px;"></i>
-   </div>
-   <div class="sidebar-brand-text mx-3">ระบบจองห้องประชุม</div>
- </a>
+<a class="sidebar-brand d-flex align-items-center justify-content-center" style="color:#ffffff;" onclick="backindex()">
+      <div class="sidebar-brand-icon">
+        <i><img src="img/icon.png" style="width:50px;"></i>
+      </div>
+      <div class="sidebar-brand-text mx-3">ระบบจองห้องประชุม</div>
+    </a>
 
 
  <li class="nav-item">
    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
      <i class="fas fa-fw fa-cog"></i>
-     <span class="textsize">เมนู</span>
+     <span class="textsize" style="font-size:20px;">เมนู</span>
    </a>
    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
      <div class="bg-white py-2 collapse-inner rounded">
 
-       <a class="collapse-item textsize" href="Reservemeetingroom.php">จองห้องประชุม</a>
-       <a class="collapse-item textsize" href="cards.html">----</a>
+       <a class="collapse-item textsize" style="font-size:20px;" href="Reservemeetingroom.php">จองห้องประชุม</a>
+       <a class="collapse-item mb-0" style="font-size:20px;" href="addmeetingroom_form.php">เพิ่มห้องประชุม</a>
      </div>
    </div>
  </li>
@@ -246,7 +241,7 @@ function checktime(){
  <li class="nav-item">
    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
      <i class="fas fa-fw fa-table"></i>
-     <span>รายงาน</span>
+     <span style="font-size:20px;">รายงาน</span>
    </a>
    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
      <div class="bg-white py-2 collapse-inner rounded">
@@ -368,7 +363,7 @@ function checktime(){
  
 
 
-<div class="container-sm themed-container d-flex" style="margin-left: 210px;">
+<div class="container themed-container " style="margin-left: 300px;width:1200px;">
 <div class="card">
 <div class="card-header  d-flex flex-row align-items-center justify-content-between ">
       <h2>จองห้องประชุม</h2>

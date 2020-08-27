@@ -33,6 +33,7 @@
 		$result = $Query->fetch_assoc();
 		if($rows>0 && $result['level']== 0)
 		{
+			$_SESSION['level']=$result['level'];
 			$_SESSION['username']=$username;
 			$_SESSION['id_pea']=$result['id_pea'];
 			$_SESSION['name']=$result['name'];
@@ -44,6 +45,7 @@
 		}
 		else if($rows>0 && $result['level']== 1)
 		{
+			$_SESSION['level']=$result['level'];
 			$_SESSION['username']=$username;
 			$_SESSION['id_pea']=$result['id_pea'];
 			$_SESSION['name']=$result['name'];

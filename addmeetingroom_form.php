@@ -15,27 +15,43 @@ require('configDB.php');
 //  $sql2 = "SELECT * FROM room_tb WHERE username = '505972' ";
 //  $result = mysqli_query($conn,$sql2);
 ?>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css'>
-     
- 
-        <link href='./packages/core/main.css' rel='stylesheet' />
-        <link href='./packages/daygrid/main.css' rel='stylesheet' />
-        <link href='./packages/timegrid/main.css' rel='stylesheet' />
-        <script src='./packages/core/main.js'></script>
-        <script src='./packages/interaction/main.js'></script>
-        <script src='./packages/daygrid/main.js'></script>
-        <script src='./packages/timegrid/main.js'></script>
         <link rel="icon" type="img/png" href="iconpea.png"/>
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  
+    
+
+
         <!-- partial -->
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
+        <!-- <script src="./script.js"> -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="js-use/sb-admin-2.min.js"></script>
         <script>
+          function backindex(){
+var level = document.getElementById("level").value;
+console.log(level);
+if(level == 1){
+  open('index_admin.php');
+  close('Reservemeetingroom.php');
+ 
+ 
+}
+else{
+  open('index_user.php');
+  close('Reservemeetingroom.php');
+
+
+}
+}
  function insertmeetingroom(){
 
     var room_name = document.getElementById("room_name").value;
@@ -68,120 +84,147 @@ require('configDB.php');
         
         
         </script>
-         <style>
-       body {
-       background: linear-gradient(135deg,  #ffb3ff 30%, #e580ff 50%);
-          }
-    </style>
+   
     <title>จองห้องประชุม</title>
 
-    <style>
-
-body {
-  background:#bdbdbd;
-  margin: 40px 10px;
-  padding: 0;
-  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 14px;
-}
-
-#calendar {
-  max-width: 900px;
-  margin: 0 auto;
-}
-.topnav {
-  overflow: hidden;
-  background-color: #ffffff ;
-  margin-top:-40px;
-  width:2000px;
-  margin-left:-40px;
-}
-
-.topnav a {
-  float: left;
-  color: #000000;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #c95eff;
-  color: white;
-}
-  .neumorphic {
-        border-radius: 1rem;
-        background: var(--color);
-        /* -webkit-animation: 1s -.3s 1 paused opacify;
-        animation: 1s -.3s 1 paused opacify; */
-        -webkit-backdrop-filter: blur(1.5rem);
-        backdrop-filter: blur(1.5rem);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: -0.25rem -0.25rem 0.5rem rgba(255, 255, 255, 0.07), 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.12), -0.75rem -0.75rem 1.75rem rgba(255, 255, 255, 0.07), 0.75rem 0.75rem 1.75rem rgba(0, 0, 0, 0.12), inset 8rem 8rem 8rem rgba(0, 0, 0, 0.05), inset -8rem -8rem 8rem rgba(255, 255, 255, 0.05);
-      }
-      @-webkit-keyframes opacify {
-        to {
-          background: transparent;
-        }
-      }
-      @keyframes opacify {
-        to {
-          background: transparent;
-        }
-      }
-      .neumorphic{
-        --color: hsl(210deg,10%,30%);
-        background: #ffffff;
-      }
-      @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-body {
-  font: 14px/22px "Lato", Arial, sans-serif;
-  background: #e5d8ed;
-}
-
-.lighter-text {
-  color: #ABB0BE;
-}
-
-.main-color-text {
-  color: #6394F8;
-}
-
-    
-</style>
+  
     <title>Document</title>
 </head>
 <body>
 
-<div class="topnav">
-  <a class="active" href="index_admin.php" style="margin-left:20px;">หน้าแรก</a>
-  <a href="displaydata.php" style="margin-left:20px;">ข้อมูลการประชุม</a>
-  <a href="logout.php" style="margin-left:20px;">ออกจากระบบ</a>
-  <a style="margin-left:1%;color: white;">ยินดีต้อนรับ:&nbsp;<?php ;?> Username:&nbsp;<?php echo $_SESSION['username'];?><a>
-  <a style="margin-left:30%;color: white;">จองห้องประชุม<a>
-    <a href="display_chart.php">สถิติการจอง</a>
-    <a href="addmeetingroom_form.php">เพิ่มห้องประชุม</a>
-</div>
+<input id="level" value="<?php echo $_SESSION['level'];  ?>" hidden>
+<div id="wrapper">
+
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion fixed-left" id="accordionSidebar">
+
+
+<a class="sidebar-brand d-flex align-items-center justify-content-center" style="color:#ffffff;" onclick="backindex()">
+      <div class="sidebar-brand-icon">
+        <i><img src="img/icon.png" style="width:50px;"></i>
+      </div>
+      <div class="sidebar-brand-text mx-3">ระบบจองห้องประชุม</div>
+    </a>
+
+
+ <li class="nav-item">
+   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+     <i class="fas fa-fw fa-cog"></i>
+     <span class="textsize" style="font-size:20px;">เมนู</span>
+   </a>
+   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+     <div class="bg-white py-2 collapse-inner rounded">
+
+       <a class="collapse-item textsize" style="font-size:20px;" href="Reservemeetingroom.php">จองห้องประชุม</a>
+       <a class="collapse-item mb-0" style="font-size:20px;" href="addmeetingroom_form.php">เพิ่มห้องประชุม</a>
+     </div>
+   </div>
+ </li>
+
+
+ <li class="nav-item">
+   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+     <i class="fas fa-fw fa-table"></i>
+     <span style="font-size:20px;">รายงาน</span>
+   </a>
+   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+     <div class="bg-white py-2 collapse-inner rounded">
+      
+       <a class="collapse-item" href="utilities-color.html">Colors</a>
+       <a class="collapse-item" href="utilities-border.html">Borders</a>
+       <a class="collapse-item" href="utilities-animation.html">Animations</a>
+       <a class="collapse-item" href="utilities-other.html">Other</a>
+     </div>
+   </div>
+ </li>
+
+
+ <li class="nav-item">
+   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+     <i class="fas fa-fw fa-folder"></i>
+     <span>--</span>
+   </a>
+   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+     <div class="bg-white py-2 collapse-inner rounded">
+       <h6 class="collapse-header">Login Screens:</h6>
+       <a class="collapse-item" href="login.html">Login</a>
+       <a class="collapse-item" href="register.html">Register</a>
+       <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+       <div class="collapse-divider"></div>
+       <h6 class="collapse-header">Other Pages:</h6>
+       <a class="collapse-item" href="404.html">404 Page</a>
+       <a class="collapse-item" href="blank.html">Blank Page</a>
+     </div>
+   </div>
+ </li>
+
+ <li class="nav-item">
+   <a class="nav-link" href="charts.html">
+     <i class="fas fa-fw fa-chart-area"></i>
+     <span>Charts</span></a>
+ </li>
+
+
+ <hr class="sidebar-divider d-none d-md-block">
+
+
+</ul>
+
+<!-- End of Sidebar -->
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+<!-- Main Content -->
+<div id="content">
+
+ <!-- Topbar -->
+ <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+ <h1 class="h3 mb-0 text-gray-800">ระบบจองห้องประชุม</h1>
+  
+   <ul class="navbar-nav ml-auto">
+
+
+ 
+
+     <div class="topbar-divider d-none d-sm-block"></div>
+
+     <!-- Nav Item - User Information -->
+     <li class="nav-item dropdown no-arrow">
+       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo$_SESSION['name'];  ?></span>
+         
+         <img class="img-profile rounded-circle material-icons" src="img/account.png">
+       </a>
+       <!-- Dropdown - User Information -->
+       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="logout.php">
+           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 "></i>
+           ออกจากระบบ
+         </a>
+       </div>
+     </li>
+
+   </ul>
+
+ </nav>
+
+ 
+
+   
+
+
+
+
 <div>
-            <div>
-                <div>
-                    <div>         
-                    </div>
-                    <div class="neumorphic" style="width:1000px;margin-left:25%;margin-top:5%;">    
+    <div>
+       <div>
+         <div>         
+            </div>
+                 <div class="card shadow" style="width:1000px;margin-left:300px;margin-top:100px;">    
                         <form>
-                   
-                            <div class="container-fluid" style="margin-left:-10%;">
+                             <div class="container-fluid" style="margin-left:-10%;">
                                 <div class="row">
                                     <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2" style="margin-left:35%;margin-top:5%">
                                         <div class="content">
@@ -191,9 +234,9 @@ body {
                                                 <div>
                                             <input class="form-control" type="text" id="room_name" style="width:500px;"/>
                                                 </div>
-                                                <label>ผู้ดูแลห้อง</label>
+                                   
                                                 <div>
-                                                <input class="form-control" type="text" id="room_owner_th" style="width:500px;" />
+                                                <input class="form-control" type="text" id="room_owner_th"  value="<?php echo$_SESSION['name'];?>"style="width:500px;" hidden/>
                                                 </div>
                                                 <label>ที่ตั้งห้องประชุม</label>
                                                 <div>
@@ -213,7 +256,7 @@ body {
 
                                                
 
-                                            <button  style="margin-left:10%;margin-top:10%;"  type="button" class="btn btn-primary" onclick="insertmeetingroom()">submit</button>
+                                            <button  style="margin-left:10%;margin-top:10%;"  type="button" class="btn btn-primary" onclick="insertmeetingroom()">บันทึก</button>
                                         </div>
                                     </div>
 
