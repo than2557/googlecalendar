@@ -54,7 +54,11 @@ date_default_timezone_set("Asia/Bangkok");
       
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="js-use/sb-admin-2.min.js"></script>
-     
+
+        <script src='https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'></script>
+<link rel="stylesheet" type="text/css" href="datatables.css"/>
+<script type="text/javascript" src="datatables.js"></script>
+
 <script>
 
 
@@ -381,16 +385,16 @@ $( document ).ready(function() {
       <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
          
-          <a class="collapse-item" href="utilities-color.html">Colors</a>
-          <a class="collapse-item" href="utilities-border.html">Borders</a>
-          <a class="collapse-item" href="utilities-animation.html">Animations</a>
-          <a class="collapse-item" href="utilities-other.html">Other</a>
+        <a class="collapse-item" style="font-size:14px;" href="displaydata.php">ข้อมูลการจองห้องประชุม</a>
+       <a class="collapse-item"style="font-size:14px;"  href="display_chart.php">ข้อมูลสถิติการใช่ห้องประชุม</a>
+       <a class="collapse-item" style="font-size:14px;"  href="display_room.php">ข้อมูลห้องประชุม</a>
+
         </div>
       </div>
     </li>
 
   
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
         <i class="fas fa-fw fa-folder"></i>
         <span>--</span>
@@ -413,7 +417,7 @@ $( document ).ready(function() {
       <a class="nav-link" href="charts.html">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Charts</span></a>
-    </li>
+    </li> -->
 
 
     <hr class="sidebar-divider d-none d-md-block">

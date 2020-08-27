@@ -7,13 +7,6 @@ date_default_timezone_set("Asia/Bangkok");
 require('configDB.php');
  $conn=$DBconnect;
 
-//  $id_event = $_GET['id_event'];
-//  $sql = "SELECT * FROM `event_tb`,room_tb WHERE event_tb.id_event = '$id_event' and event_tb.room_id = room_tb.room_id";
-//  $result_event = mysqli_query($conn,$sql);
-//  $row_event=$result_event->fetch_assoc();
-
-//  $sql2 = "SELECT * FROM room_tb WHERE username = '505972' ";
-//  $result = mysqli_query($conn,$sql2);
 ?>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,8 +28,13 @@ require('configDB.php');
         <!-- <script src="./script.js"> -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="js-use/sb-admin-2.min.js"></script>
+
+        <script src='https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'></script>
+      <link rel="stylesheet" type="text/css" href="datatables.css"/>
+      <script type="text/javascript" src="datatables.js"></script>
+
         <script>
-          function backindex(){
+function backindex(){
 var level = document.getElementById("level").value;
 console.log(level);
 if(level == 1){
@@ -129,11 +127,9 @@ else{
    </a>
    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
      <div class="bg-white py-2 collapse-inner rounded">
-      
-       <a class="collapse-item" href="utilities-color.html">Colors</a>
-       <a class="collapse-item" href="utilities-border.html">Borders</a>
-       <a class="collapse-item" href="utilities-animation.html">Animations</a>
-       <a class="collapse-item" href="utilities-other.html">Other</a>
+     <a class="collapse-item" style="font-size:14px;" href="displaydata.php">ข้อมูลการจองห้องประชุม</a>
+       <a class="collapse-item"style="font-size:14px;"  href="display_chart.php">ข้อมูลสถิติการใช่ห้องประชุม</a>
+       <a class="collapse-item" style="font-size:14px;"  href="display_room.php">ข้อมูลห้องประชุม</a>
      </div>
    </div>
  </li>
