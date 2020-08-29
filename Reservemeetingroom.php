@@ -6,7 +6,8 @@ date_default_timezone_set("Asia/Bangkok");
          $conn=$DBconnect;
         //  $sql = "SELECT room_tb.room_id,room_tb.room_name, event_tb.id_event FROM room_tb INNER JOIN event_tb ON room_tb.room_id = event_tb.room_id";
         //  $result_event = mysqli_query($conn,$sql);
-            $query = "SELECT room_tb.room_name,event_tb.room_id,event_tb.id_event,event_tb.name_event,COUNT(*) as number FROM event_tb,room_tb WHERE event_tb.room_id=room_tb.room_id GROUP BY room_id";
+            $query = "SELECT room_tb.ro     <?php include('check_menutool.php');?>
+  <?php include('check_menudisplay.php');?>om_id GROUP BY room_id";
             $result_room = mysqli_query($conn,$query);
             $result_event = mysqli_query($conn,$query);
              
@@ -233,8 +234,8 @@ function checktime(){
    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
      <div class="bg-white py-2 collapse-inner rounded">
 
-       <a class="collapse-item textsize" style="font-size:20px;" href="Reservemeetingroom.php">จองห้องประชุม</a>
-       <a class="collapse-item mb-0" style="font-size:20px;" href="addmeetingroom_form.php">เพิ่มห้องประชุม</a>
+            <?php include('check_menutool.php');?>
+
      </div>
    </div>
  </li>
@@ -248,9 +249,8 @@ function checktime(){
    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
      <div class="bg-white py-2 collapse-inner rounded">
       
-     <a class="collapse-item" style="font-size:14px;" href="displaydata.php">ข้อมูลการจองห้องประชุม</a>
-       <a class="collapse-item"style="font-size:14px;"  href="display_chart.php">ข้อมูลสถิติการใช่ห้องประชุม</a>
-       <a class="collapse-item" style="font-size:14px;"  href="display_room.php">ข้อมูลห้องประชุม</a>
+
+  <?php include('check_menudisplay.php');?>
      </div>
    </div>
  </li>

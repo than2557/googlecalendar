@@ -3,21 +3,19 @@ session_start();
 date_default_timezone_set("Asia/Bangkok");
         require('configDB.php');
          $conn=$DBconnect;
-
         //  $room_id = isset($_POST['room']) ? $_POST['room'] : "";
         // echo $_POST['room'];
-       
-        $sql = "SELECT * FROM `event_tb` WHERE `room_id`";
-        $result_event = mysqli_query($conn,$sql);
+         $username = $_SESSION['username'];
+         $sql = "SELECT * FROM `event_tb` WHERE `room_id`";
+         $result_event = mysqli_query($conn,$sql);
 
-        $sql2 = "SELECT * FROM room_tb";
-        $result = mysqli_query($conn,$sql2);
+         $sql2 = "SELECT * FROM room_tb WHERE `username`";
+        //ตอนนี้ผม login เป็นไอดีพี่ตาวครับ
+        //  $_SESSION['userName'] 
+        $result_room = mysqli_query($conn,$sql2);
+         $result = mysqli_query($conn,$sql2);
 
-
-       
-
-
-      
+     
         ?>
 <html lang="en">
 <head>
@@ -27,31 +25,43 @@ date_default_timezone_set("Asia/Bangkok");
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css'>
-     
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>    
 
-        <link href='./packages/core/main.css' rel='stylesheet' />
-        <link href='./packages/daygrid/main.css' rel='stylesheet' />
-        <link href='./packages/timegrid/main.css' rel='stylesheet' />
-        <script src='./packages/core/main.js'></script>
-        <script src='./packages/interaction/main.js'></script>
-        <script src='./packages/daygrid/main.js'></script>
-        <script src='./packages/timegrid/main.js'></script>
+
+
+      <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/index_admin.css">
+
+<link rel="stylesheet" href="js/fullcalendar-5.3.0/lib/main.css">
+<script src="js/fullcalendar-5.3.0/lib/main.min.js"></script>
+
+      
+
         <link rel="icon" type="img/png" href="iconpea.png"/>
         
-        <!-- partial -->
+
+     
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
-        <!-- <script src="./script.js"> -->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+       
+      
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="js-use/sb-admin-2.min.js"></script>
 
-       <style>
-       body {
-       background: linear-gradient(135deg,  #ffb3ff 50%, #e580ff 50%);
-          }
-    </style>
-        <script>
+        <script src='https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'></script>
+<link rel="stylesheet" type="text/css" href="datatables.css"/>
+<script type="text/javascript" src="datatables.js"></script>
+
+<script>
+
+
 var id_room = '';
 var time_period='';  
 var date_today = new Date();
@@ -122,25 +132,23 @@ function selectroom(){
                             console.log(get);
      var calendarEl = document.getElementById('calendar');
      calendarEl.innerHTML= '';
-     var calendar = new FullCalendar.Calendar(calendarEl, {
-    height: 550,
-    plugins: [ 'interaction', 'dayGrid', 'timeGrid' ,'bootstrap' ],
+     var calendar = new FullCalendar.Calendar(calendarEl, { 
+    height: 700,
     themeSystem: 'bootstrap',
-    header: {
-      left: 'prev,next today',
+    headerToolbar: {
+        left: 'prev,next today',
       center: 'title',
       right:'dayGridMonth,timeGridWeek,timeGridDay'
-    },
-    defaultDate: date_today,
-    lang: 'TH',
+        
+      },
+    initialDate: date_today,
+    locale: 'th',
     navLinks: true, // can click day/week names to navigate views
     selectable: true,
     selectMirror: true,
     ///fuction popup
 select:function(info){
-  // extraParams.
-// var tp = info.time_periodStr;
-// alert('select'+tp);
+
 var TT = document.getElementById("tp").value;
       console.log(TT);
   var start = info.startStr;
@@ -166,20 +174,10 @@ if(check < today)
 
     else
     {
-      // Its a right date
-     
+      
       var Eventform = $("#basicModal").modal(); 
  }
-//  if(time_period=="fullday"){
-//   Swal.fire({
-//           title: 'ไม่สามารถเพิ่มการประชุมได้',
-//               icon: 'warning',
-//               confirmButtonColor: '#3085d6',
-//             })
-//  }
-//  else{
-//   var Eventform = $("#basicModal").modal(); 
-//  }
+
  },
     editable: true,
     eventLimit: true,
@@ -269,148 +267,62 @@ $(function(){
    
     $('#startdate').attr('min', maxDate);
     $('#enddate').attr('min', maxDate);
+    $('#startdate2').attr('min', maxDate);
 });
 
 
+
+
+
+$( document ).ready(function() {
+  var room_id =document.getElementById("room").value;
+    console.log(room_id);
+   $.ajax({
+    type:'POST',
+    url:'data_event.php',
+    data:{"room_id":room_id},
+    success:function(data){
+      var getdata = JSON.parse(data);
+      console.log(getdata);
+
+
+
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      themeSystem: 'bootstrap',
+      height:700,
+      headerToolbar: {
+        left: 'prev,next today',
+      center: 'title',
+      right:'dayGridMonth,timeGridWeek,timeGridDay'
+        
+      },
+      initialDate: date_today,
+      locale: 'th',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      dayMaxEvents: true, // allow "more" link when too many events
+      events:getdata
+    });
+
+    calendar.render();
+ 
+
+
+    }
+
+   });
+});
+  
+
 </script>
-
+   
     <title>จองห้องประชุม</title>
 
-    <style>
-
-body {
-       background:#ffffff;
-          }
-    </style>
-    <title>จองห้องประชุม</title>
-
-    <style>
-
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
-
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .topnav {
-  overflow: hidden;
-  background-color: #ffffff ;
-  margin-top:-40px;
-  width:2000px;
-  margin-left:-40px;
-}
-
-.topnav a {
-  float: left;
-  color: #000000;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #9d00d1;
-  color: white;
-}
-  .neumorphic {
-        border-radius: 1rem;
-        background: var(--color);
-        /* -webkit-animation: 1s -.3s 1 paused opacify;
-        animation: 1s -.3s 1 paused opacify; */
-        -webkit-backdrop-filter: blur(1.5rem);
-        backdrop-filter: blur(1.5rem);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: -0.25rem -0.25rem 0.5rem rgba(255, 255, 255, 0.07), 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.12), -0.75rem -0.75rem 1.75rem rgba(255, 255, 255, 0.07), 0.75rem 0.75rem 1.75rem rgba(0, 0, 0, 0.12), inset 8rem 8rem 8rem rgba(0, 0, 0, 0.05), inset -8rem -8rem 8rem rgba(255, 255, 255, 0.05);
-      }
-      @-webkit-keyframes opacify {
-        to {
-          background: transparent;
-        }
-      }
-      @keyframes opacify {
-        to {
-          background: transparent;
-        }
-      }
-      .neumorphic{
-        --color: hsl(210deg,10%,30%);
-        background: #ffffff;
-      }
-      @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-body {
-  font: 14px/22px "Lato", Arial, sans-serif;
-  background: #faf7f7;
-}
-
-.lighter-text {
-  color: #ABB0BE;
-}
-
-.main-color-text {
-  color: #6394F8;
-}
-
-</style>
 </head>
 <body>
 
-<div class="topnav">
-  <a class="active" href="#home" style="margin-left:20px;">หน้าหลัก</a>
-
-
-  <a style="margin-left:1%;color: black;">ยินดีต้อนรับ:&nbsp;<?php  echo $_SESSION['name'];;?> Username:&nbsp;<?php echo $_SESSION['username'];?><a>
-  <a href="logout.php" style="margin-left:20px;">ออกจากระบบ</a>
-  <a href="Reservemeetingroom.php" style="margin-left:30%;">จองห้องประชุม<a>
-    <a href="display_chart.php">สถิติการจอง</a>
-    <a href="displaymeeting.php">ข้อมูลการจองห้องประชุม </a>
-  
- 
-</div>
-
-
-
-<div class="container">
-<div class="neumorphic"style="width:900;background-color:#ffff;margin-left:15%;margin-top:3%">
-<label style="margin-left:20%;margin-top:15px;" for="text">ห้องประชุม:</label>
-<select  style="width:300px;margin-left:30%;margin-top:-3.5%;"  class="form-control" name="select_room" id="select_room" onchange="selectroom()">
-                      <option value="--เลือกห้องประชุม--">--เลือกห้องประชุม--</option>
-                       <?php while($row = mysqli_fetch_array($result )){ 
-                           echo '<option value="'.$row['room_id'].'">'.$row['room_name'].'</option>'; 
-                       } ?> 
-                   </select>
-
-                   <div style="margin-left:32%;margin-top:10px;">
-            <label for="text">ที่ตั้งห้องประชุม:</label>
-            <label for="room_location" id="room_location"></label>
-            <label for="text">จำนวนคนที่รองรับ:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <label for="room_size" id="room_size"></label>&nbsp;&nbsp;&nbsp;&nbsp;คน
-            </div>
-
-            </div>
-<div style="width:900;margin-top:10px;background-color:#ffff;margin-left:15%;" id='calendar'></div>
-<div>
-
-
-<div class="data_room" id="">
-
-</div>
-                   <div class="modal" id="datainfo" tabindex="-1">
+            <div class="modal" id="datainfo" tabindex="-1">
                  
                     <div class="modal-header"style="width:500px;background-color:#FAF1F1;margin-top:10%;margin-left:35%;">
        <h4 class="modal-title" id="myModalLabel">การประชุม</h4>
@@ -432,7 +344,159 @@ body {
                     </div>
 
 
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+
+             <!-- Page Wrapper -->
+           <input id="room" value="1" hidden>
+
+  <div id="wrapper">
+  <!-- bg-gradient-success -->
+<!-- Sidebar -->
+  <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
+
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+      <div class="sidebar-brand-icon">
+        <i><img src="img/icon.png" style="width:50px;"></i>
+      </div>
+      <div class="sidebar-brand-text mx-3">ระบบจองห้องประชุม</div>
+    </a>
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-cog"></i>
+        <span class="mb-0" style="font-size:20px;">เมนู</span>
+      </a>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+  
+         <?php include('check_menutool.php');?>
+        </div>
+      </div>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-table"></i>
+        <span style="font-size:20px;">รายงาน</span>
+      </a>
+      <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+         
+        <?php include('check_menudisplay.php');?>
+        </div>
+      </div>
+    </li>
+
+  
+
+
+
+    <hr class="sidebar-divider d-none d-md-block">
+
+  
+  </ul>
+ 
+<!-- End of Sidebar -->
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+  <!-- Main Content -->
+  <div id="content">
+
+    <!-- Topbar -->
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <h1 class="h3 mb-0 text-gray-800">ระบบจองห้องประชุม</h1>
+     
+      <ul class="navbar-nav ml-auto">
+
+ 
+    
+
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo$_SESSION['name'];  ?></span>
+            
+            <img class="img-profile rounded-circle material-icons" src="img/account.png">
+          </a>
+          <!-- Dropdown - User Information -->
+          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="logout.php">
+              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 "></i>
+              ออกจากระบบ
+            </a>
+          </div>
+        </li>
+
+      </ul>
+
+    </nav>
+    
+    <!-- End of Topbar -->
+
+
+
+
+
+        <div class="d-flex p-3 col-sm" style="margin-left: 300px;">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header  d-flex flex-row align-items-center justify-content-between">
+        
+            <h6 class="m-0 font-weight-bold">ข้อมูลการจองห้องประชุม:</h6>
+           <select class="form-control" name="select_room" style="width: 200px;" id="select_room" onchange="selectroom()">
+                      <option value="">--เลือกห้องประชุม--</option>
+                       <?php while($row = mysqli_fetch_array($result)){ 
+                           echo '<option value="'.$row['room_id'].'">'.$row['room_name'].'</option>'; 
+                       } ?> 
+                   </select>
+            </div>
+          
+            <div class="card" style="width:1200px;">
+      
+<div>
+
+
+<div>
+<label for="text">ที่ตั้งห้องประชุม:</label>
+<label for="room_location" id="room_location"></label>
+<label for="text">จำนวนคนที่รองรับ:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<label for="room_size" id="room_size"></label>&nbsp;&nbsp;&nbsp;&nbsp;คน
+</div>
+
+</div>
+
+<div id='calendar'></div>
+           
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+     
+          
+
+
+
+
+
+
+
+
+        <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="width:1000px;margin-left:-50%;">
                     <div class="modal-header">
@@ -492,14 +556,11 @@ body {
                             </div>
                         </form>
                     </div>
-                    <!-- <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div> -->
+                 
                 </div>
             </div>
             </div>
         
-           
         
 </body>
 

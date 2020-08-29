@@ -96,7 +96,7 @@ require('configDB.php');
  $conn=$DBconnect;
 
 
- $sql = "SELECT event_tb.name_event,event_tb.id_event,empolyee.username,department.name_department,department.id_department,event_tb.room_id,room_tb.room_name,event_tb.start,event_tb.end,event_tb.time_start,event_tb.time_end FROM department,room_tb,event_tb,empolyee WHERE event_tb.room_id =room_tb.room_id and event_tb.username =empolyee.username and empolyee.id_department =department.id_department GROUP BY room_id";
+ $sql = "SELECT empolyee.name,event_tb.name_event,event_tb.id_event,empolyee.username,department.name_department,department.id_department,event_tb.room_id,room_tb.room_name,event_tb.start,event_tb.end,event_tb.time_start,event_tb.time_end FROM department,room_tb,event_tb,empolyee WHERE event_tb.room_id =room_tb.room_id and event_tb.username =empolyee.username and empolyee.id_department =department.id_department GROUP BY room_id";
  $result_event = mysqli_query($conn,$sql);
 
 	?>
@@ -152,30 +152,6 @@ require('configDB.php');
  </li>
 
 
- <!-- <li class="nav-item">
-   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-     <i class="fas fa-fw fa-folder"></i>
-     <span>--</span>
-   </a>
-   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-     <div class="bg-white py-2 collapse-inner rounded">
-       <h6 class="collapse-header">Login Screens:</h6>
-       <a class="collapse-item" href="login.html">Login</a>
-       <a class="collapse-item" href="register.html">Register</a>
-       <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-       <div class="collapse-divider"></div>
-       <h6 class="collapse-header">Other Pages:</h6>
-       <a class="collapse-item" href="404.html">404 Page</a>
-       <a class="collapse-item" href="blank.html">Blank Page</a>
-     </div>
-   </div>
- </li>
-
- <li class="nav-item">
-   <a class="nav-link" href="charts.html">
-     <i class="fas fa-fw fa-chart-area"></i>
-     <span>Charts</span></a>
- </li> -->
 
 
  <hr class="sidebar-divider d-none d-md-block">
@@ -233,6 +209,7 @@ require('configDB.php');
       <th>ถึงวันที่</th>
       <th>เวลาเริ่ม</th>
       <th>ถึงเวลา</th>
+      <th>ผู้จอง</th>
       <th>ชื่อแผนก</th>
       <th>แก้ไข</th>
       <th>ลบ</th>
@@ -250,6 +227,7 @@ require('configDB.php');
       <td><?=$row['end'];?></td>
       <td><?=$row['time_start'];?></td>
       <td><?=$row['time_end'];?></td>
+      <td><?=$row['name'];?></td>
       <td><?=$row['name_department'];?></td>
       <td><a href="event_updateform.php?id_event=<?=$row['id_event'];?>"><img src="upload/Edit-512.png" style="width:50px;"></a></td>
       <td><a href="event_del.php?id_event=<?=$row['id_event'];?>" onClick="return window.confirm('แน่ใจเหรอ?')"><img src="upload/47-512.png" style="width:50px;"></a></td>
