@@ -76,17 +76,10 @@ else{
             alert('wow' + data);
         }
     });
-
-
         }
-        
-        
         </script>
    
     <title>จองห้องประชุม</title>
-
-  
-    <title>Document</title>
 </head>
 <body>
 
