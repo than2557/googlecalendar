@@ -111,18 +111,16 @@ $username=$_SESSION['username'];
 <div id="wrapper">
 
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion fixed-left" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
 
 
-<a class="sidebar-brand d-flex align-items-center justify-content-center" style="color:#ffffff;" onclick="backindex()">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#"style="margin-top:50px;">
       <div class="sidebar-brand-icon">
-        <i><img src="img/icon.png" style="width:50px;"></i>
+        <i><img src="img/icon.png" style="width:200px;"></i>
       </div>
-      <div class="sidebar-brand-text mx-3">ระบบจองห้องประชุม</div>
     </a>
 
-
- <li class="nav-item">
+ <li class="nav-item" style="margin-top:50px;">
    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
      <i class="fas fa-fw fa-cog"></i>
      <span class="textsize" style="font-size:20px;">เมนู</span>
@@ -197,7 +195,7 @@ $username=$_SESSION['username'];
 
  </nav>
 
-<div class="card shadow" style="width:1000px;margin-left:30%;margin-top:50px;">
+<div class="card shadow container-sm">
 		<table class="table table-bordered" id="myTable" style="background-color:#ffff;width:1000px;height:400px ;margin-left:0%;margin-top:10%;">
   <thead>
     <tr>

@@ -351,18 +351,18 @@ $( document ).ready(function() {
   <div id="wrapper">
   <!-- bg-gradient-success -->
 <!-- Sidebar -->
-  <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
 
 
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#"style="margin-top:50px;">
       <div class="sidebar-brand-icon">
-        <i><img src="img/icon.png" style="width:50px;"></i>
+        <i><img src="img/icon.png" style="width:200px;"></i>
       </div>
-      <div class="sidebar-brand-text mx-3">ระบบจองห้องประชุม</div>
+   
     </a>
 
 
-    <li class="nav-item">
+    <li class="nav-item" style="margin-top:50px;">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
         <span class="mb-0" style="font-size:20px;">เมนู</span>

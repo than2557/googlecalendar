@@ -94,71 +94,48 @@ else{
 <div id="wrapper">
 
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion fixed-left" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
 
 
-<a class="sidebar-brand d-flex align-items-center justify-content-center" style="color:#ffffff;" onclick="backindex()">
-      <div class="sidebar-brand-icon">
-        <i><img src="img/icon.png" style="width:50px;"></i>
-      </div>
-      <div class="sidebar-brand-text mx-3">ระบบจองห้องประชุม</div>
-    </a>
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#"style="margin-top:50px;" onclick="backindex()">
+  <div class="sidebar-brand-icon">
+    <i><img src="img/icon.png" style="width:200px;"></i>
+  </div>
+
+</a>
 
 
- <li class="nav-item">
-   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-     <i class="fas fa-fw fa-cog"></i>
-     <span class="textsize" style="font-size:20px;">เมนู</span>
-   </a>
-   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-     <div class="bg-white py-2 collapse-inner rounded">
+<li class="nav-item" style="margin-top:50px;">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+    <i class="fas fa-fw fa-cog"></i>
+    <span class="mb-0" style="font-size:20px;">เมนู</span>
+  </a>
+  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
 
-       <a class="collapse-item textsize" style="font-size:20px;" href="Reservemeetingroom.php">จองห้องประชุม</a>
-       <a class="collapse-item mb-0" style="font-size:20px;" href="addmeetingroom_form.php">เพิ่มห้องประชุม</a>
-     </div>
-   </div>
- </li>
-
-
- <li class="nav-item">
-   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-     <i class="fas fa-fw fa-table"></i>
-     <span style="font-size:20px;">รายงาน</span>
-   </a>
-   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-     <div class="bg-white py-2 collapse-inner rounded">
-     <a class="collapse-item" style="font-size:14px;" href="displaydata.php">ข้อมูลการจองห้องประชุม</a>
-       <a class="collapse-item"style="font-size:14px;"  href="display_chart.php">ข้อมูลสถิติการใช่ห้องประชุม</a>
-       <a class="collapse-item" style="font-size:14px;"  href="display_room.php">ข้อมูลห้องประชุม</a>
-     </div>
-   </div>
- </li>
+    <?php include('check_menutool.php');?>
+    </div>
+  </div>
+</li>
 
 
- <li class="nav-item">
-   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-     <i class="fas fa-fw fa-folder"></i>
-     <span>--</span>
-   </a>
-   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-     <div class="bg-white py-2 collapse-inner rounded">
-       <h6 class="collapse-header">Login Screens:</h6>
-       <a class="collapse-item" href="login.html">Login</a>
-       <a class="collapse-item" href="register.html">Register</a>
-       <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-       <div class="collapse-divider"></div>
-       <h6 class="collapse-header">Other Pages:</h6>
-       <a class="collapse-item" href="404.html">404 Page</a>
-       <a class="collapse-item" href="blank.html">Blank Page</a>
-     </div>
-   </div>
- </li>
+<li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+    <i class="fas fa-fw fa-table"></i>
+    <span style="font-size:20px;">รายงาน</span>
+  </a>
+  <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+     
+    <?php include('check_menudisplay.php');?>
 
- <li class="nav-item">
-   <a class="nav-link" href="charts.html">
-     <i class="fas fa-fw fa-chart-area"></i>
-     <span>Charts</span></a>
- </li>
+    </div>
+  </div>
+</li>
+
+
+
+
 
 
  <hr class="sidebar-divider d-none d-md-block">

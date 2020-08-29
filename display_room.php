@@ -111,18 +111,18 @@ require('configDB.php');
 <div id="wrapper">
 
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion fixed-left" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
 
 
-<a class="sidebar-brand d-flex align-items-center justify-content-center" style="color:#ffffff;" onclick="backindex()">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#"style="margin-top:50px;" onclick="backindex()">
       <div class="sidebar-brand-icon">
-        <i><img src="img/icon.png" style="width:50px;"></i>
+        <i><img src="img/icon.png" style="width:200px;"></i>
       </div>
-      <div class="sidebar-brand-text mx-3">ระบบจองห้องประชุม</div>
+   
     </a>
 
 
- <li class="nav-item">
+    <li class="nav-item" style="margin-top:50px;">
    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
      <i class="fas fa-fw fa-cog"></i>
      <span class="textsize" style="font-size:20px;">เมนู</span>
