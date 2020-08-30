@@ -14,23 +14,18 @@ require('configDB.php');
 ?>
 <html lang="en">
 <head>
-
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css'>
-     
-
-        <link href='./packages/core/main.css' rel='stylesheet' />
-        <link href='./packages/daygrid/main.css' rel='stylesheet' />
-        <link href='./packages/timegrid/main.css' rel='stylesheet' />
-        <script src='./packages/core/main.js'></script>
-        <script src='./packages/interaction/main.js'></script>
-        <script src='./packages/daygrid/main.js'></script>
-        <script src='./packages/timegrid/main.js'></script>
         <link rel="icon" type="img/png" href="iconpea.png"/>
-        
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  
+    
+
+
         <!-- partial -->
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
@@ -38,99 +33,16 @@ require('configDB.php');
         <script src='https://cdnjs.cloudflare.com/ajax/libs/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
         <!-- <script src="./script.js"> -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="js-use/sb-admin-2.min.js"></script>
 
-        <style>
-       body {
-       background:#ffffff;
-          }
-    </style>
+        <script src='https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'></script>
+      <link rel="stylesheet" type="text/css" href="datatables.css"/>
+      <script type="text/javascript" src="datatables.js"></script>
+
+  
     <title>จองห้องประชุม</title>
 
-    <style>
 
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
-
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .topnav {
-  overflow: hidden;
-  background-color: #ffffff ;
-  margin-top:-40px;
-  width:2000px;
-  margin-left:-40px;
-}
-
-.topnav a {
-  float: left;
-  color: #000000;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #9d00d1;
-  color: white;
-}
-  .neumorphic {
-        border-radius: 1rem;
-        background: var(--color);
-        /* -webkit-animation: 1s -.3s 1 paused opacify;
-        animation: 1s -.3s 1 paused opacify; */
-        -webkit-backdrop-filter: blur(1.5rem);
-        backdrop-filter: blur(1.5rem);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: -0.25rem -0.25rem 0.5rem rgba(255, 255, 255, 0.07), 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.12), -0.75rem -0.75rem 1.75rem rgba(255, 255, 255, 0.07), 0.75rem 0.75rem 1.75rem rgba(0, 0, 0, 0.12), inset 8rem 8rem 8rem rgba(0, 0, 0, 0.05), inset -8rem -8rem 8rem rgba(255, 255, 255, 0.05);
-      }
-      @-webkit-keyframes opacify {
-        to {
-          background: transparent;
-        }
-      }
-      @keyframes opacify {
-        to {
-          background: transparent;
-        }
-      }
-      .neumorphic{
-        --color: hsl(210deg,10%,30%);
-        background: #ffffff;
-      }
-      @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-body {
-  font: 14px/22px "Lato", Arial, sans-serif;
-  background: #faf7f7;
-}
-
-.lighter-text {
-  color: #ABB0BE;
-}
-
-.main-color-text {
-  color: #6394F8;
-}
-
-
-
-</style>
         <script>
  function updatecalendar(){
 
@@ -168,32 +80,109 @@ body {
     <title>Document</title>
 </head>
 <body>
+<input id="level" value="<?php echo $_SESSION['level'];  ?>" hidden>
+<div id="wrapper">
+
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
+
+
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#"style="margin-top:50px;" onclick="backindex()">
+  <div class="sidebar-brand-icon">
+    <i><img src="img/icon.png" style="width:200px;"></i>
+  </div>
+
+</a>
+
+
+<li class="nav-item" style="margin-top:50px;">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+    <i class="fas fa-fw fa-cog"></i>
+    <span class="mb-0" style="font-size:20px;">เมนู</span>
+  </a>
+  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+
+    <?php include('check_menutool.php');?>
+    </div>
+  </div>
+</li>
+
+
+<li class="nav-item">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+    <i class="fas fa-fw fa-table"></i>
+    <span style="font-size:20px;">รายงาน</span>
+  </a>
+  <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+     
+    <?php include('check_menudisplay.php');?>
+
+    </div>
+  </div>
+</li>
 
 
 
-<div class="topnav">
-<a class="active"  style="margin-left:20px;"><img src="iconpea.png" style="width:40px;height:30px;"></a>
-  <a  style="margin-left:20px;">หน้าหลัก</a>
-  <a href="displaydata.php" style="margin-left:20px;">ข้อมูลการประชุม</a>
-  <a href="logout.php" style="margin-left:20px;">ออกจากระบบ</a>
-  <a style="margin-left:1%;color: back;">ยินดีต้อนรับ:&nbsp;<?php echo $_SESSION['name']; ;?> เลขประจำตัวพนักงาน:&nbsp;<?php echo $_SESSION['username'];?><a>
-  <a href="Reservemeetingroom.php" style="margin-left:28%;">จองห้องประชุม<a>
-    <a href="display_chart.php">สถิติการจอง</a>
-    <a href="addmeetingroom_form.php">เพิ่มห้องประชุม</a>
-    
 
-</div>
-<div>
-            <div>
-                <div>
-                    <div>
-                        
-                        
+
+
+ <hr class="sidebar-divider d-none d-md-block">
+
+
+</ul>
+
+<!-- End of Sidebar -->
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+<!-- Main Content -->
+<div id="content">
+
+ <!-- Topbar -->
+ <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+ <h1 class="h3 mb-0 text-gray-800">ระบบจองห้องประชุม</h1>
+  
+   <ul class="navbar-nav ml-auto">
+
+
  
 
-                    </div>
-                    <div style="margin-top:100px;">    
-                        <form>
+     <div class="topbar-divider d-none d-sm-block"></div>
+
+     <!-- Nav Item - User Information -->
+     <li class="nav-item dropdown no-arrow">
+       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo$_SESSION['name'];  ?></span>
+         
+         <img class="img-profile rounded-circle material-icons" src="img/account.png">
+       </a>
+       <!-- Dropdown - User Information -->
+       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="logout.php">
+           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 "></i>
+           ออกจากระบบ
+         </a>
+       </div>
+     </li>
+
+   </ul>
+
+ </nav>
+
+ 
+
+   
+
+
+
+
+       <div>
+               <div class="card shadow container-md">    
+                        <form >
                         <input id="id_event" value="<?=$row_event['id_event'];?>" hidden="true"/>
                             <div class="container-fluid">
                                 <div class="row">
@@ -226,24 +215,13 @@ body {
 
                                             </div>
                                             <div class="form-group">
-                                                <!-- <label>เวลาเริ่ม</label>
-                                                <div class="input-group time" id="timepicker">
-                                                    <input class="form-control" type="time" placeholder="เวลาเริ่ม" id="start" /><span class="input-group-append input-group-addon"><span class="input-group-text"><i class="fa fa-clock"></i></span></span>
-
-                                                </div>
-
-                                                <label>เวลาเสร็จสิ้นการประชุม</label>
-                                                <div class="input-group time" id="timepicker">
-                                                    <input class="form-control" placeholder="HH:MM AM/PM" type="time" id="endtime"/><span class="input-group-append input-group-addon"><span class="input-group-text"><i class="fa fa-clock"></i></span></span>
-
-                                                </div> -->
-                                                <label>ช่วงเวลา</label>
+                                         
+                                                <label>เวลาเริ่ม</label>
                                                 <div class="input-group date">
-                                                    <select id="time_period" class="form-control" value="<?=$row_event['time_period'];?>">
-                                <option value="fullday">เต็มวัน</option>
-                                <option value="halfdaymoring">ครึ่งวันเช้า</option>
-                                <option value="halfdayafter">ครึ่งวันบ่าย</option>
-                                </select>
+                                                    <input id="time_period" type="time" class="form-control" value="<?=$row_event['time_start'];?>">
+                                                    <label>ถึงเวลา</label>
+                                                    <input id="time_period" type="time" class="form-control" value="<?=$row_event['time_end'];?>">
+                                
                                                 </div>
                                             </div>
                                             <button type="button" class="btn btn-primary" onclick="updatecalendar()">submit</button>
@@ -255,12 +233,9 @@ body {
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                   
-                    </div>
+               
                 </div>
-            </div>
-            </div>
+         
         
 </body>
 </html>
