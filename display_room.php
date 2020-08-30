@@ -200,10 +200,10 @@ require('configDB.php');
 
 
 
-<div class="card shadow container-md">
+<div class="card shadow container-md" style="margin-top:150px;">
 <label for="text" >ข้อมูลห้องประชุม</label>
 </div>
-<div class="card shadow container-md">
+<div class="card shadow container-md mb-5">
 		<table class="table table-bordered" id="myTable">
   <thead>
     <tr>
