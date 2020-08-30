@@ -111,10 +111,10 @@ $username=$_SESSION['username'];
 <div id="wrapper">
 
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar" >
 
 
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#"style="margin-top:50px;">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#"style="margin-top:50px;"onclick="backindex()">
       <div class="sidebar-brand-icon">
         <i><img src="img/icon.png" style="width:200px;"></i>
       </div>

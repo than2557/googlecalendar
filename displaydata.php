@@ -199,7 +199,7 @@ require('configDB.php');
 
  </nav>
 
-<div class="card shadow">
+<div class="card shadow container-md">
 		<table class="table table-bordered" id="myTable">
   <thead>
     <tr>
