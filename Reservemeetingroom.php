@@ -47,14 +47,16 @@ function backindex(){
 var level = document.getElementById("level").value;
 console.log(level);
 if(level == 1){
-  open('index_admin.php');
   close('Reservemeetingroom.php');
+  open('index_admin.php');
+  
  
  
 }
 else{
-  open('index_user.php');
   close('Reservemeetingroom.php');
+  open('index_user.php');
+
 
 
 }
@@ -343,7 +345,7 @@ function checktime(){
  
 
 
-<div class="container themed-container " style="margin-left: 300px;width:1200px;">
+<div class="container themed-container mt-5" >
 <div class="card">
 <div class="card-header  d-flex flex-row align-items-center justify-content-between ">
       <h2>จองห้องประชุม</h2>

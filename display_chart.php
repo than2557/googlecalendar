@@ -8,7 +8,7 @@ date_default_timezone_set("Asia/Bangkok");
         //  $result_event = mysqli_query($conn,$sql);
         
 
-            $query = "SELECT room_tb.room_name,EXTRACT(YEAR FROM event_tb.start),event_tb.room_id,event_tb.id_event,event_tb.name_event,COUNT(*) as number FROM event_tb,room_tb WHERE event_tb.room_id=room_tb.room_id GROUP BY room_id";
+            $query = "SELECT room_tb.room_name,event_tb.room_id,event_tb.id_event,event_tb.name_event,COUNT(*) as number FROM event_tb,room_tb WHERE event_tb.room_id=room_tb.room_id and substr(start,1,4)='2020' GROUP BY room_id";
             $result_room = mysqli_query($conn,$query);
             $result_event = mysqli_query($conn,$query);
 ?>
@@ -45,6 +45,24 @@ date_default_timezone_set("Asia/Bangkok");
     <title>Document</title>
 </head>
 <script>
+  function backindex(){
+var level = document.getElementById("level").value;
+console.log(level);
+if(level == 1){
+  close('display_chart.php');
+  open('index_admin.php');
+
+ 
+ 
+}
+else{
+  close('display_chart.php');
+  open('index_user.php');
+
+
+
+}
+}
 $(document).ready( function () {
     $('#myTable').DataTable({  
       
@@ -82,27 +100,24 @@ function selectyear(){
         success: function(data) {
       // console.log("funtion Success")
             $('#data_chart').html(data);     
+            // $('#piechart').html(data);     
 
         }
 });
-}
-
-function backindex(){
-var level = document.getElementById("level").value;
-console.log(level);
-if(level == 1){
-  open('index_admin.php');
-  close('display_chart.php');
+// $.ajax({
+//     type:"POST",
+//     url:"select_chart.php",
+//     data: {"select_year": select_year},
+//         success: function(data) {
+//       // console.log("funtion Success")
  
- 
+//             $('#piechart').html(data);     
+
+//         }
+// });
 }
-else{
-  open('index_user.php');
-  close('display_chart.php');
 
 
-}
-}
 </script>
 <style>
 
@@ -220,7 +235,7 @@ else{
                    </select>
                    </div>  
     <div style="card shadow">  
-                <div class="card shadow "  id="piechart" style="width:500px;height:400px;margin-left:188px;"></div>  
+                <div class="card shadow "  id="piechart" style="width:500px;height:400px;margin-left:170px;"></div>  
          
            </div>
            <div>
@@ -229,7 +244,7 @@ else{
     
 
 
-           <div class="card shadow" style="width:700px;margin-left:45%;margin-top:-25%;">
+           <div class="card shadow" style="width:700px;margin-left:45%;margin-top:-500px;">
 		<table class="table table-bordered" id="myTable" style="background-color:#ffff;width:695px;height:400px;margin-left:-0%;margin-top:-50%;">
   <thead>
     <tr>
@@ -263,21 +278,15 @@ else{
            {  
                 var data = google.visualization.arrayToDataTable([  
                           ['ห้องประชุม', 'จำนวนการใช่งาน'],<?php     
-                          
-              $room_name = array();
-              $i = 0;
+       
                           while($row = mysqli_fetch_array($result_room))  
                           {     
-                              //  $array_name= array('room_name'=>$row['room_name'],
-                              // 'number'=>$row['number']);
-                         //      $room = $row['room_name'];
-                         //     echo $room ;
+                      
                                
-                               echo "['".$row['room_id']."',".$row['number']."],";  
-                              // $room_name[$i] =$array_name;
-                              // $i++;
+                               echo "['".$row['room_name']."',".$row['number']."],";  
+                           
                           }
-                         //  echo json_encode($room_name,JSON_UNESCAPED_SLASHES);      
+                        
               ?>    
                         
                      ]);  

@@ -21,21 +21,15 @@ $conn=$DBconnect;
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css'>
      
 
-        <link href='./packages/core/main.css' rel='stylesheet' />
-        <link href='./packages/daygrid/main.css' rel='stylesheet' />
-        <link href='./packages/timegrid/main.css' rel='stylesheet' />
-        <script src='./packages/core/main.js'></script>
-        <script src='./packages/interaction/main.js'></script>
-        <script src='./packages/daygrid/main.js'></script>
-        <script src='./packages/timegrid/main.js'></script>
+       
         <link rel="icon" type="img/png" href="iconpea.png"/>
-        
+        <link rel="stylesheet" href="css/index.css">
         
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
-        <!-- <script src="./register_script.js"></script> -->
+       
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 
@@ -47,24 +41,31 @@ function register() {
     var name = document.getElementById("name").value;
     var lastname = document.getElementById("lastname").value;
     var Department = document.getElementById("Department").value;
+    var position =document.getElementById("position").value;
+    var position_detail =document.getElementById("position_detail").value;
+
     console.log(username);
     console.log(password);
     console.log(name);
     console.log(lastname);
     console.log(Department);
+    console.log(position);
+    console.log(position_detail);
     $.ajax({
         type: "POST",
         url: "register.php",
-        data: { "username": username, "password": password, "name": name, "lastname": lastname, "Department": Department },
+        data: { "username": username, "password": password, "name": name, "lastname": lastname, "Department": Department,"position":position,"position_detail":position_detail },
         success: function(data) {
-            // alert('wow' + data);
+       
             Swal.fire(
                     'Good job!',
                     'สมัครสมาชิกเสร็จสิ้น!',
                     'success')
                     setTimeout(function(){
         location.reload();
-          },3000);  
+          },3000); 
+          close('register_form.php');
+          open('index.php');
         }
     });
 }
@@ -169,119 +170,23 @@ $.ajax({
 
 }
       </script>
-        <style>
-body {
-background:#f5f5f5;
-  margin: 40px 10px;
-  padding: 0;
-  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 14px;
-  width:100%;
-}
-
-#calendar {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
-
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .topnav {
-  overflow: hidden;
-  background-color: #ffffff ;
-  margin-top:-40px;
-  width:2000px;
-  margin-left:-40px;
-}
-
-.topnav a {
-  float: left;
-  color: #000000;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #c95eff;
-  color: white;
-}
-  .neumorphic {
-        border-radius: 1rem;
-        background: var(--color);
-        /* -webkit-animation: 1s -.3s 1 paused opacify;
-        animation: 1s -.3s 1 paused opacify; */
-        -webkit-backdrop-filter: blur(1.5rem);
-        backdrop-filter: blur(1.5rem);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: -0.25rem -0.25rem 0.5rem rgba(255, 255, 255, 0.07), 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.12), -0.75rem -0.75rem 1.75rem rgba(255, 255, 255, 0.07), 0.75rem 0.75rem 1.75rem rgba(0, 0, 0, 0.12), inset 8rem 8rem 8rem rgba(0, 0, 0, 0.05), inset -8rem -8rem 8rem rgba(255, 255, 255, 0.05);
-      }
-      @-webkit-keyframes opacify {
-        to {
-          background: transparent;
-        }
-      }
-      @keyframes opacify {
-        to {
-          background: transparent;
-        }
-      }
-      .neumorphic{
-        --color: hsl(210deg,10%,30%);
-        background: #ffffff;
-      }
-      @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-body {
-  font: 14px/22px "Lato", Arial, sans-serif;
-  background: #e5d8ed;
-}
-
-.lighter-text {
-  color: #ABB0BE;
-}
-
-.main-color-text {
-  color: #6394F8;
-}
-
-    
-
-</style>
+  
 
     <title>register</title>
 </head>
 <body>
-<div class="topnav">
-  <a class="active" href="index.php" style="margin-left:20px;">หน้าหลัก</a>
-  
+
+<div class="card mar">
+     <div class="text-center head">
+   <h1 class="text-center mx-auto" style="margin-top:80px;">สมัครสมาชิก<h1>
 </div>
-<div class="neumorphic"style="margin-top:1%;margin-left:35%;width:400px;height:100px;z-index:-1;">
-<label style="margin-left:35%;margin-top:10%;font-size:20px;">สมัครสมาชิก</label>
-</div>
-    <div class="container">
-        <form>
-            <div  class="neumorphic"style="margin-top:4%;width:1000px;height:500px;z-index:-1;border-style:solid;">
+    <div class="bg-div">
+
+<div class="img-mar">
+       
+   <div>   
+   <form>
+            <div  class="container-md"style="margin-top:50px;margin-left:500px;">
         <div class="row">
      
 <label style="margin-left:10%;margin-top:10%;">ชื่อผู้ใช้:</label> <input class="form-control" type="text" id="username" onchange="checkusernme()" style="margin-left:3%;width:200px;margin-top:10%;">
@@ -324,8 +229,39 @@ body {
 </div>
 
 </div>
-</form>    
-</div>
+</form> 
+    </div>
+    </div>
+
+    <div class="modal fade centered" id="exampleModal" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">เข้าสู่ระบบ</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="login.php">
+              <div class="form-group">
+                <label for="idem" class="col-form-label">ชื่อผู่ใช้:</label>
+                <input type="text" class="form-control" id="idem" name="idem">
+              </div>
+              <div class="form-group">
+                <label for="password" class="col-form-label">รหัสผ่าน:</label>
+                <input class="form-control" type="password" id="password" name="password"></input>
+              </div>
+              <button type="submit" class="btn btn-primary" >เข้าสู่ระบบ</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
 
 </body>
 </html>
