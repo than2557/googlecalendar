@@ -142,7 +142,8 @@ function selectroom(){
         
       },
     initialDate: date_today,
-    locale: 'th',
+    locale: 'local',
+
     navLinks: true, // can click day/week names to navigate views
     selectable: true,
     selectMirror: true,
@@ -181,13 +182,16 @@ if(check < today)
  },
     editable: true,
     eventLimit: true,
-    timeZone:'Asia/Bangkok', //allow "more" link when too many events
+  
+    timezone: 'UTC',
+     //allow "more" link when too many events
     events:get,
     eventColor: '#275AF9',
     eventTextColor:'#FBFAFC',
     fontsize:'30px',
  eventClick: function(info) {
    var Eventpopup = $("#datainfo").modal();
+  
       document.getElementById("title").innerHTML = info.event.title; 
       document.getElementById("event_start").innerHTML = info.event.start; 
       document.getElementById("event_end").innerHTML = info.event.end; 

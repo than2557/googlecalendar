@@ -27,7 +27,8 @@ $result_data = mysqli_query($conn,$sql_room);
           'room_size'=>$dataevent['room_size'],
           'room_owner_th'=>$dataevent['room_owner_th'],
           'time_start'=>$dataevent['time_start'],
-          'time_end'=>$dataevent['time_end']
+          'time_end'=>$dataevent['time_end'],
+          'room_name'=>$dataevent['room_name']
           
          );
              $event_json[$i] =$arr_event;

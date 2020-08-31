@@ -142,7 +142,8 @@ function selectroom(){
         
       },
     initialDate: date_today,
-    locale: 'th',
+    locale: 'local',
+
     navLinks: true, // can click day/week names to navigate views
     selectable: true,
     selectMirror: true,
@@ -181,13 +182,16 @@ if(check < today)
  },
     editable: true,
     eventLimit: true,
-    timeZone:'Asia/Bangkok', //allow "more" link when too many events
+  
+    timezone: 'UTC',
+     //allow "more" link when too many events
     events:get,
     eventColor: '#275AF9',
     eventTextColor:'#FBFAFC',
     fontsize:'30px',
  eventClick: function(info) {
    var Eventpopup = $("#datainfo").modal();
+  console.log(info.event.extendedProps.room_name);
       document.getElementById("title").innerHTML = info.event.title; 
       document.getElementById("event_start").innerHTML = info.event.start; 
       document.getElementById("event_end").innerHTML = info.event.end; 
@@ -351,7 +355,7 @@ $( document ).ready(function() {
   <div id="wrapper">
   <!-- bg-gradient-success -->
 <!-- Sidebar -->
-  <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
 
 
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#"style="margin-top:50px;">
@@ -370,7 +374,7 @@ $( document ).ready(function() {
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
   
-        <?php include('check_menutool.php');?>
+         <?php include('check_menutool.php');?>
         </div>
       </div>
     </li>
@@ -385,7 +389,6 @@ $( document ).ready(function() {
         <div class="bg-white py-2 collapse-inner rounded">
          
         <?php include('check_menudisplay.php');?>
-
         </div>
       </div>
     </li>

@@ -1,6 +1,6 @@
 <?php
 
-date_default_timezone_set("Asia/Bangkok");
+        date_default_timezone_set("Asia/Bangkok");
         require('configDB.php');
          $conn=$DBconnect;
 
@@ -12,7 +12,7 @@ date_default_timezone_set("Asia/Bangkok");
         $result_room = mysqli_query($conn,$sqlroom);
         $event_json = array();
         $i = 0;
-        
+
         while($dataevent = mysqli_fetch_array($result_room)){
 
             $room_id = $dataevent['room_id'];
@@ -21,7 +21,7 @@ date_default_timezone_set("Asia/Bangkok");
            $strNewDateend = date("Y-m-d", strtotime("+0 day", strtotime($dateend)));
            $time_start = $dataevent['time_start'];
            $time_end = $dataevent['time_end'];
-       
+        //    echo date(DATE_ATOM,$dataevent['start']);
          
           $arr_event= array(
           'title'=>$dataevent['name_event'],
@@ -33,7 +33,8 @@ date_default_timezone_set("Asia/Bangkok");
           'room_size'=>$dataevent['room_size'],
           'room_owner_th'=>$dataevent['room_owner_th'],
           'time_start'=>$dataevent['time_start'],
-          'time_end'=>$dataevent['time_end']
+          'time_end'=>$dataevent['time_end'],
+          'room_name'=>$dataevent['room_name']
           
          );
              $event_json[$i] =$arr_event;
