@@ -95,7 +95,7 @@ require('configDB.php');
  $conn=$DBconnect;
 $username=$_SESSION['username'];
 // echo $username;
- $sql = "SELECT event_tb.name_event,event_tb.id_event,event_tb.start,event_tb.end,event_tb.time_start,event_tb.time_end,event_tb.username,empolyee.name,room_tb.room_id,room_tb.room_name FROM event_tb,empolyee,room_tb WHERE event_tb.room_id =room_tb.room_id and event_tb.username = empolyee.username and event_tb.username = '$username'";
+ $sql = "SELECT event_tb.name_event,event_tb.id_event,event_tb.start,event_tb.end,event_tb.time_start,event_tb.time_end,event_tb.username,empolyee.name,room_tb.room_id,room_tb.room_name FROM event_tb,empolyee,room_tb WHERE event_tb.room_id =room_tb.room_id and event_tb.username = empolyee.username and event_tb.username = '$username' GROUP BY id_event ";
  $result_event = mysqli_query($conn,$sql);
 
 	?>
