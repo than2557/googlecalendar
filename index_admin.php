@@ -192,6 +192,7 @@ if(check < today)
  eventClick: function(info) {
    var Eventpopup = $("#datainfo").modal();
   console.log(info.event.extendedProps.room_name);
+  document.getElementById("room_modal").innerHTML = info.event.extendedProps.room_name; 
       document.getElementById("title").innerHTML = info.event.title; 
       document.getElementById("event_start").innerHTML = info.event.start; 
       document.getElementById("event_end").innerHTML = info.event.end; 
@@ -334,6 +335,8 @@ $( document ).ready(function() {
         <span aria-hidden="true">&times;</span>
         </button></div>   
         <div class="modal-body" style="width:500px;background-color:#FAF1F1;margin-left:35%;"> 
+
+        <label for="room_modal">ห้องประชุม:</label><label for="room_modal" id="room_modal">ห้องประชุม:</label><br>
                 <label for="title">หัวข้อการประชุม:</label><label for="title" id="title">หัวข้อการประชุม:</label><br>
                       
                        <label for="start">เวลาเริ่มประชุม:</label> <label for="start" id="event_start">เวลาเริ่มประชุม:</label><br>
