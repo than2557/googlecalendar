@@ -544,14 +544,11 @@ $( document ).ready(function() {
 
                                             </div>
                                       
-                                                <label>ช่วงเวลา</label>
+                                                <label>ช่วงเวลาเริ่ม</label>
                                                 <div class="input-group date">
-                                                    <select id="time_period" class="form-control">
-                                <option value="fullday">เต็มวัน</option>
-                                <option value="halfdaymoring">ครึ่งวันเช้า</option>
-                                <option value="halfdayafter">ครึ่งวันบ่าย</option>
-                                </select>
-                             
+                            <inpu class="input-group date" type="time">
+                            <label>ถึงเวลา</label>
+                            <inpu class="input-group date" type="time">
                              
                                             <button type="button" class="btn btn-primary" onclick="sentcalendar()">submit</button>
                                         </div>

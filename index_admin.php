@@ -542,18 +542,18 @@ $( document ).ready(function() {
                                                 <div class="input-group date">
                                                     <input class="form-control" placeholder="yyyy-MM-dd" id="enddate" type="date"/>
                                                 </div>
-
                                             </div>
                                       
-                                                <label>ช่วงเวลา</label>
-                                                <div class="input-group date">
-                                                    <select id="time_period" class="form-control">
-                                <option value="fullday">เต็มวัน</option>
-                                <option value="halfdaymoring">ครึ่งวันเช้า</option>
-                                <option value="halfdayafter">ครึ่งวันบ่าย</option>
-                                </select>
-                             
-                             
+                                            <div class="col">
+ <label>ช่วงเวลา:</label>
+<input type="time" id="time_start"class="form-control"  onchange="checktime()">
+</div>
+<div class="col">
+<label>ถึง:</label>
+<input type="time" id="time_end" class="form-control">
+</div>
+                                              
+                  
                                             <button type="button" class="btn btn-primary" onclick="sentcalendar()">submit</button>
                                         </div>
                                     </div>
