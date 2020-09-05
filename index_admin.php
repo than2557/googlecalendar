@@ -318,8 +318,18 @@ $( document ).ready(function() {
 
    });
 });
-  
+  function checktime(){
+    var date = document.getElementById("startdate").value;
+    var enddate = document.getElementById("enddate").value;
+  var time_start = document.getElementById("time_start").value;
+  var time_end = document.getElementById("time_end").value;
+  console.log(date);
+  console.log(enddate);
+  console.log(time_start);
+  console.log(time_end);
 
+
+  }
 </script>
    
     <title>จองห้องประชุม</title>
@@ -550,7 +560,7 @@ $( document ).ready(function() {
 </div>
 <div class="col">
 <label>ถึง:</label>
-<input type="time" id="time_end" class="form-control">
+<input type="time" id="time_end" class="form-control" onchange="checktime()">
 </div>
                                               
                   
