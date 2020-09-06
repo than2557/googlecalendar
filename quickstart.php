@@ -11,30 +11,12 @@ $eventname =$_POST['event'];
 $enddate = $_POST['enddate'];
 // $time_period=$_POST['time_period'];
 $room_id=$_POST['room_id'];
-$username = $_POST['username'];
-$visitor = $_POST['visitor'];
+$username = $_SESSION['username'];
+// $visitor = $_POST['visitor'];
 
 $start = $_POST['time_start'];
 $end = $_POST['time_end'];
-// if($time_period == 'fullday'){
 
-//   $start = "08:30:00";
-//   $end = "16:30:00";
-//   // echo $timestart;
-//   // echo $timeend;
-// }
-// elseif($time_period == 'halfdaymoring'){
-
-//   $start = "08:30:00";
-//   $end ="12:30:00";
-  
-// }
-// elseif($time_period =='halfdayafter'){
-
-//   $start = "13:00:00";
-//   $end = "16:30:00";
-
-// }
 
 echo $date.'<br>';
 echo $eventname.'<br>';
@@ -54,7 +36,7 @@ echo $strNewDateend;
 // $datecon = date_add($dateee, date_interval_create_from_date_string('1 days'));
 
 
-$sql ="INSERT INTO `event_tb`(`room_id`,`name_event`,`start`,`end`,`username`, `visitor`, `status_event`,`time_start`,`time_end`) VALUES ('$room_id','$eventname','$date','$enddate','$username','$visitor','1','$start','$end')";
+$sql ="INSERT INTO `event_tb`(`room_id`,`name_event`,`start`,`end`,`username`, `status_event`,`time_start`,`time_end`) VALUES ('$room_id','$eventname','$date','$enddate','$username','1','$start','$end')";
 $Query = mysqli_query($conn,$sql);
 echo $sql;
 

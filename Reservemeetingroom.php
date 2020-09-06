@@ -156,7 +156,7 @@ $(document).ready(function(){
     var date = document.getElementById("startdate").value;
     var enddate = document.getElementById("enddate").value;
     // var time_period = document.getElementById("time_period").value;
-    var visitor = document.getElementById("visitor").value;
+    // var visitor = document.getElementById("visitor").value;
     var username = document.getElementById("username").value;
     var time_start = document.getElementById("time_start").value;
     var time_end = document.getElementById("time_end").value;
@@ -170,7 +170,7 @@ $(document).ready(function(){
     $.ajax({
 type: "POST",
         url: "quickstart.php",
-        data: {"date": date, "event": event,"enddate": enddate, "room_id": data_room,"visitor":visitor,"username":username,"time_start":time_start,"time_end":time_end},
+        data: {"date": date, "event": event,"enddate": enddate, "room_id": data_room,"username":username,"time_start":time_start,"time_end":time_end},
         success:function(data) {
           Swal.fire({title:'การจองเสร็จสิ้น!',
                 text:'บันทึกการจองเสร็จสิ้น.',

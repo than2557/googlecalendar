@@ -56,6 +56,7 @@ date_default_timezone_set("Asia/Bangkok");
         <script src="js-use/sb-admin-2.min.js"></script>
 
         <script src='https://cdn.datatables.net/plug-ins/1.10.21/i18n/Thai.json'></script>
+
 <link rel="stylesheet" type="text/css" href="datatables.css"/>
 <script type="text/javascript" src="datatables.js"></script>
 
@@ -70,32 +71,39 @@ var mm = String(date_today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = date_today.getFullYear();
 date_today = yyyy + '-' + mm + '-' + dd;
 
+
 function sentcalendar(){
 
     var event = document.getElementById("event").value;
     var date = document.getElementById("startdate").value;
     var enddate = document.getElementById("enddate").value;
-    var time_period = document.getElementById("time_period").value;
+    // var time_period = document.getElementById("time_period").value;
     var room_id = document.getElementById("room_select").value;
-    var visitor = document.getElementById("visitor").value;
+    // var visitor = document.getElementById("visitor").value;
+    var time_start = document.getElementById("time_start").value;
+    var time_end = document.getElementById("time_end").value;
     
     console.log(date)
     console.log(event)
-    console.log(visitor)
+    // console.log(visitor)
     console.log(enddate)
     console.log(time_period)
     console.log(room_id)
+    console.log(time_start)
+    console.log(time_end)
     $.ajax({
         type: "POST",
         url: "quickstart.php",
-        data: {"date": date, "event": event,"enddate": enddate, "time_period": time_period, "room_id": room_id,"visitor":visitor},
+        data: {"date": date, "event": event,"enddate": enddate, "time_period": time_period, "room_id": room_id,"time_start":time_start,"time_end":time_end},
         success:function(data) {
             // alert('wow' + data);
             Swal.fire(
   'Good job!',
   'การเพิ่มข้อมูลเสร็จสิ้น!',
   'success')
-// location.reload();
+  // setTimeout(function(){
+  //       location.reload();
+  //         },3000); 
         }
     });
 }
@@ -323,10 +331,12 @@ $( document ).ready(function() {
     var enddate = document.getElementById("enddate").value;
   var time_start = document.getElementById("time_start").value;
   var time_end = document.getElementById("time_end").value;
+  var room_id = document.getElementById("room_select").value;
   console.log(date);
   console.log(enddate);
   console.log(time_start);
   console.log(time_end);
+  console.log(room_id);
 
 
   }
@@ -530,11 +540,11 @@ $( document ).ready(function() {
                                         <div class="content">
                                             <h1>จองห้องประชุม</h1>
                                             <div class="form-group">
-                                                <label>ชื่อการประชุม</label>
+                                                <label>หัวข้อการประชุม</label>
                                                 <div>
                                                     <input class="form-control" type="text" id="event" />
-                                                    <label>ชื่อผู้ติดต่อการประชุม</label>
-                                                    <input class="form-control" type="text" name="visitor" id="visitor" />
+                                             
+                        
                                                 </div>
                                                 <label>ห้องประชุม</label>
                                                 <div>
