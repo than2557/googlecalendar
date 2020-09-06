@@ -5,23 +5,33 @@ require('configDB.php');
  $conn=$DBconnect;
 
  $time_start = isset($_POST['time_start']) ? $_POST['time_start'] : "";
+ $time_end = isset($_POST['time_end']) ? $_POST['time_end'] : "";
 $start =  isset($_POST['startdate']) ? $_POST['startdate'] : "";
+$room_id =  isset($_POST['room_id']) ? $_POST['room_id'] : "";
 
-$sqlroom = "SELECT * FROM room_tb WHERE room_tb.room_id not in (select event_tb.room_id from event_tb where event_tb.time_start = '$time_start' and event_tb.start ='$start') order by room_tb.room_id";
+
+
+$sqlroom = "SELECT * FROM `event_tb` WHERE `room_id` ='$room_id' and time_start ='$time_start'";
  $result_room = mysqli_query($conn,$sqlroom);
-         echo $sqlroom;
+      
+         $event = array();
+         $i = 0;
+
          while($dataroom = mysqli_fetch_array($result_room)){
+            
 
-            ?>  
-    <tr>
-      <td id="room_id" style="text-align:center;"><?=$dataroom['room_id'];?></td>
-      <td id="room_name"><?=$dataroom['room_name'];?></td>
-      <td id="room_location"><?=$dataroom['room_location'];?></td>
-      <td id="room_type"><?=$dataroom['room_type'];?></td>
-      <td  id="room_type" style="text-align:right;"><?=$dataroom['room_size']?></td>
-      <td><button type="button" id="idroom"class="btn btn-info btnSelect" value="<?=$dataroom['room_id'];?>">จองห้องประชุม</button></td>
-    </tr>
-        
 
-   
-   <?php  } ?>
+      //       print_r($dataroom['time_start']);
+      //     $time_start = $dataroom['time_start'];
+
+          $arrayevent =array(
+            'room_id'=>$dataroom['room_id'],
+            'time_start'=>$dataroom['time_start'],
+            'time_end'=>$dataroom['time_end'],
+            'start'=>$dataroom['start']);
+
+            $event[$i] =$arrayevent;
+            $i++;
+ } 
+ echo json_encode($event);   
+ ?>
