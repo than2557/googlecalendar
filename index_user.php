@@ -162,7 +162,7 @@ $result = mysqli_query($conn, $sql2);
 
             },
             initialDate: date_today,
-            locale: 'local',
+            locale: 'th',
 
             navLinks: true, // can click day/week names to navigate views
             selectable: true,

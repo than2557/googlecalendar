@@ -159,10 +159,9 @@ $result = mysqli_query($conn, $sql2);
               left: 'prev,next today',
               center: 'title',
               right: 'dayGridMonth,timeGridWeek,timeGridDay'
-
             },
             initialDate: date_today,
-            locale: 'local',
+            locale: 'th',
 
             navLinks: true, // can click day/week names to navigate views
             selectable: true,
