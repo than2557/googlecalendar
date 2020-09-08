@@ -607,11 +607,11 @@ $result = mysqli_query($conn, $sql2);
 
                           <div class="col">
                             <label>ช่วงเวลา:</label>
-                            <input type="time" format="hh:mm:ss" step="1" id="time_start" class="form-control" onchange="checktime()">
+                            <input type="time" format="hh:mm:ss"  id="time_start" class="form-control" onchange="checktime()">
                           </div>
                           <div class="col">
                             <label>ถึง:</label>
-                            <input type="time" format="hh:mm:ss" id="time_end" step="1" class="form-control" onchange="checktime()">
+                            <input type="time" format="hh:mm:ss" id="time_end"  class="form-control" onchange="checktime()">
                           </div>
 
 
