@@ -249,8 +249,6 @@ $result = mysqli_query($conn, $sql2);
           document.getElementById("room_location").innerHTML = dataroom[0].room_location;
           document.getElementById("room_size").innerHTML = dataroom[0].room_size;
           // document.getElemetById("room_select").value = room_id;
-
-
         }
       });
 
@@ -295,10 +293,6 @@ $result = mysqli_query($conn, $sql2);
       $('#startdate2').attr('min', maxDate);
 
     });
-
-
-
-
 
     $(document).ready(function() {
       var room_id = document.getElementById("room").value;
@@ -615,7 +609,7 @@ $result = mysqli_query($conn, $sql2);
                           </div>
 
 
-                          <button type="button" class="btn btn-primary" onclick="sentcalendar()">submit</button>
+                          <button type="button" class="btn btn-primary mt-4 mr-3"  onclick="sentcalendar()">จองห้องประชุม</button>
                         </div>
                       </div>
 

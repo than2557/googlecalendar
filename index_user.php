@@ -615,7 +615,8 @@ $result = mysqli_query($conn, $sql2);
                           </div>
 
 
-                          <button type="button" class="btn btn-primary" onclick="sentcalendar()">submit</button>
+                       
+                          <button type="button" class="btn btn-primary mt-4 mr-3"  onclick="sentcalendar()">จองห้องประชุม</button>
                         </div>
                       </div>
 
