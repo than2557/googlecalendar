@@ -371,6 +371,18 @@ $result = mysqli_query($conn, $sql2);
 
       });
 
+ 
+    }
+    function checkdate(){
+      var date = document.getElementById("startdate").value;
+      var enddate = document.getElementById("enddate").value;
+      if(date < enddate){
+        Swal.fire({
+              icon: 'error',
+              title: 'ไม่สามารถเลือกได้',
+            });
+            document.getElementById("enddate").value = '';
+      }
     }
   </script>
 
@@ -594,7 +606,7 @@ $result = mysqli_query($conn, $sql2);
 
                             <label>ถึงวันที่</label>
                             <div class="input-group date">
-                              <input class="form-control" placeholder="yyyy-MM-dd" id="enddate" type="date" />
+                              <input class="form-control" placeholder="yyyy-MM-dd" id="enddate" type="date" onchange="checkdate()"/>
                             </div>
                           </div>
 

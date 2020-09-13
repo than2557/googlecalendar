@@ -159,7 +159,6 @@ $result = mysqli_query($conn, $sql2);
               left: 'prev,next today',
               center: 'title',
               right: 'dayGridMonth,timeGridWeek,timeGridDay'
-
             },
             initialDate: date_today,
             locale: 'th',
@@ -249,8 +248,6 @@ $result = mysqli_query($conn, $sql2);
           document.getElementById("room_location").innerHTML = dataroom[0].room_location;
           document.getElementById("room_size").innerHTML = dataroom[0].room_size;
           // document.getElemetById("room_select").value = room_id;
-
-
         }
       });
 
@@ -295,10 +292,6 @@ $result = mysqli_query($conn, $sql2);
       $('#startdate2').attr('min', maxDate);
 
     });
-
-
-
-
 
     $(document).ready(function() {
       var room_id = document.getElementById("room").value;
@@ -378,6 +371,18 @@ $result = mysqli_query($conn, $sql2);
 
       });
 
+ 
+    }
+    function checkdate(){
+      var date = document.getElementById("startdate").value;
+      var enddate = document.getElementById("enddate").value;
+      if(date < enddate){
+        Swal.fire({
+              icon: 'error',
+              title: 'ไม่สามารถเลือกได้',
+            });
+            document.getElementById("enddate").value = '';
+      }
     }
   </script>
 
@@ -601,21 +606,20 @@ $result = mysqli_query($conn, $sql2);
 
                             <label>ถึงวันที่</label>
                             <div class="input-group date">
-                              <input class="form-control" placeholder="yyyy-MM-dd" id="enddate" type="date" />
+                              <input class="form-control" placeholder="yyyy-MM-dd" id="enddate" type="date" onchange="checkdate()"/>
                             </div>
                           </div>
 
                           <div class="col">
                             <label>ช่วงเวลา:</label>
-                            <input type="time" format="hh:mm:ss"  id="time_start" class="form-control" onchange="checktime()">
+                            <input type="time" format="hh:mm:ss" id="time_start" class="form-control" onchange="checktime()">
                           </div>
                           <div class="col">
                             <label>ถึง:</label>
-                            <input type="time" format="hh:mm:ss" id="time_end"  class="form-control" onchange="checktime()">
+                            <input type="time" format="hh:mm:ss" id="time_end" class="form-control" onchange="checktime()">
                           </div>
 
 
-                       
                           <button type="button" class="btn btn-primary mt-4 mr-3"  onclick="sentcalendar()">จองห้องประชุม</button>
                         </div>
                       </div>

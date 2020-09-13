@@ -11,7 +11,8 @@ $room_id =  isset($_POST['room_id']) ? $_POST['room_id'] : "";
 
 
 
-$sqlroom = "SELECT * FROM `event_tb` WHERE `room_id` ='$room_id' and time_start ='$time_start'";
+$sqlroom = "SELECT * FROM `event_tb` WHERE `room_id` ='$room_id' and time_start ='$time_start' and  start ='$start'";
+
  $result_room = mysqli_query($conn,$sqlroom);
       
          $event = array();
@@ -19,11 +20,6 @@ $sqlroom = "SELECT * FROM `event_tb` WHERE `room_id` ='$room_id' and time_start 
 
          while($dataroom = mysqli_fetch_array($result_room)){
             
-
-
-      //       print_r($dataroom['time_start']);
-      //     $time_start = $dataroom['time_start'];
-
           $arrayevent =array(
             'room_id'=>$dataroom['room_id'],
             'time_start'=>$dataroom['time_start'],
