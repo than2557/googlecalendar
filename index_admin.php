@@ -376,7 +376,7 @@ $result = mysqli_query($conn, $sql2);
     function checkdate(){
       var date = document.getElementById("startdate").value;
       var enddate = document.getElementById("enddate").value;
-      if(date < enddate){
+      if(date > enddate){
         Swal.fire({
               icon: 'error',
               title: 'ไม่สามารถเลือกได้',
@@ -616,7 +616,7 @@ $result = mysqli_query($conn, $sql2);
                           </div>
                           <div class="col">
                             <label>ถึง:</label>
-                            <input type="time" format="hh:mm:ss" id="time_end" class="form-control" onchange="checktime()">
+                            <input type="time" format="hh:mm:ss" id="time_end" class="form-control">
                           </div>
 
 

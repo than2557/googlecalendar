@@ -376,7 +376,7 @@ $result = mysqli_query($conn, $sql2);
     function checkdate(){
       var date = document.getElementById("startdate").value;
       var enddate = document.getElementById("enddate").value;
-      if(date < enddate){
+      if(date > enddate){
         Swal.fire({
               icon: 'error',
               title: 'ไม่สามารถเลือกได้',
