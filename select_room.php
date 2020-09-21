@@ -7,7 +7,7 @@
          $room_id = isset($_POST['room']) ? $_POST['room'] : "";
         
 
-        $sqlroom = "SELECT * FROM `event_tb`,room_tb WHERE room_tb.room_id = '$room_id' and  event_tb.room_id = room_tb.room_id and status_event='1'";
+        $sqlroom = "SELECT event_tb.end,event_tb.time_start,event_tb.time_end,event_tb.id_event,event_tb.name_event,event_tb.start,event_tb.room_id,room_tb.room_location,room_tb.room_size,room_tb.room_owner_th,room_tb.room_name,empolyee.name FROM event_tb,empolyee,room_tb WHERE event_tb.room_id = room_tb.room_id and event_tb.username = empolyee.username and room_tb.room_id ='$room_id' GROUP BY id_event";
         // echo $sqlroom;
         $result_room = mysqli_query($conn,$sqlroom);
         $event_json = array();
@@ -17,6 +17,7 @@
 
             $room_id = $dataevent['room_id'];
             $end = $dataevent['end'];
+       
            $dateend = date_create($end)->format('Y-m-d');
            $strNewDateend = date("Y-m-d", strtotime("+0 day", strtotime($dateend)));
            $time_start = $dataevent['time_start'];
@@ -34,7 +35,8 @@
           'room_owner_th'=>$dataevent['room_owner_th'],
           'time_start'=>$dataevent['time_start'],
           'time_end'=>$dataevent['time_end'],
-          'room_name'=>$dataevent['room_name']
+          'room_name'=>$dataevent['room_name'],
+          'name'=>$dataevent['name']
           
          );
              $event_json[$i] =$arr_event;
