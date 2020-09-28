@@ -9,7 +9,7 @@ if($level == 1){
 ?>
 <table class="table table-bordered" id="myTable" style="background-color:#ffff;width:1000px;height:400px ;margin-left:0%;margin-top:10%;">
   <thead>
-    <tr>
+    <tr style="background-color:#f9ebff;">
       <th>รหัสการประชุม</th>
       <th>ชื่อการประชุม</th>
       <th>วันที่จอง</th>
@@ -60,7 +60,6 @@ else{
      <?php
   while($row = $result_event->fetch_assoc()){
     ?>
-
     <tr>
       <td style="text-align:center;"><?=$row['id_event'];?></td>
       <td><?=$row['name_event'];?></td>
@@ -68,10 +67,7 @@ else{
       <td><?=$row['end'];?></td>
       <td><?=$row['username'];?></td>
       <td><?=$row['name'];?></td>
- 
-      
     </tr>
-
     <?php }?>  
   </tbody>
 </table>

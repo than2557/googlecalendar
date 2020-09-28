@@ -104,17 +104,17 @@ function selectyear(){
 
         }
 });
-// $.ajax({
-//     type:"POST",
-//     url:"select_chart.php",
-//     data: {"select_year": select_year},
-//         success: function(data) {
-//       // console.log("funtion Success")
+$.ajax({
+    type:"POST",
+    url:"select_chart.php",
+    data: {"select_year": select_year},
+        success: function(data) {
+      // console.log("funtion Success")
  
-//             $('#piechart').html(data);     
+            $('#piechart').html(data);     
 
-//         }
-// });
+        }
+});
 }
 
 
@@ -247,7 +247,7 @@ function selectyear(){
            <div class="card shadow" style="width:700px;margin-left:45%;margin-top:-500px;">
 		<table class="table table-bordered" id="myTable" style="background-color:#ffff;width:695px;height:400px;margin-left:-0%;margin-top:-50%;">
   <thead>
-    <tr>
+    <tr  style="background-color:#f9ebff;">
      
       <th>ชื่อการประชุม</th>
       <th>ห้องประชุม</th>

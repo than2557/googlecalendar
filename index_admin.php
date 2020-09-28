@@ -106,6 +106,7 @@ $result = mysqli_query($conn, $sql2);
         success: function(data) {
           // alert('wow' + data);
           Swal.fire(
+            'Good job!',
             'การเพิ่มข้อมูลเสร็จสิ้น!',
             'success')
           setTimeout(function(){
@@ -149,6 +150,7 @@ $result = mysqli_query($conn, $sql2);
           // console.log(data);
           var get = JSON.parse(data);
           console.log(get);
+
           var calendarEl = document.getElementById('calendar');
           calendarEl.innerHTML = '';
           var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -205,13 +207,13 @@ $result = mysqli_query($conn, $sql2);
             eventClick: function(info) {
               var Eventpopup = $("#datainfo").modal();
               console.log(info.event.extendedProps.room_name);
-              console.log(info.event.extendedProps.name);
               document.getElementById("room_modal").innerHTML = info.event.extendedProps.room_name;
+              document.getElementById("name").innerHTML = info.event.extendedProps.name
               document.getElementById("title").innerHTML = info.event.title;
-           
               document.getElementById("event_start").innerHTML = moment(info.event.start).add(543, 'year').format('MMMM Do YYYY, h:mm:ss a');
               document.getElementById("event_end").innerHTML =  moment(info.event.end).add(543, 'year').format('MMMM Do YYYY, h:mm:ss a');
               document.getElementById("name").innerHTML =info.event.extendedProps.name;
+
               var tp = info.event.extendedProps.idevent;
               document.getElementById("tp").value = tp;
 
@@ -404,12 +406,13 @@ $result = mysqli_query($conn, $sql2);
     <div class="modal-body" style="width:500px;background-color:#FAF1F1;margin-left:35%;">
     <label for="name">ผู้จอง:</label><label for="name" id="name">ผู้จอง:</label><br>
       <label for="room_modal">ห้องประชุม:</label><label for="room_modal" id="room_modal">ห้องประชุม:</label><br>
+      
       <label for="title">หัวข้อการประชุม:</label><label for="title" id="title">หัวข้อการประชุม:</label><br>
 
       <label for="start">เวลาเริ่มประชุม:</label> <label for="start" id="event_start">เวลาเริ่มประชุม:</label><br>
 
       <label for="end">เวลาสิ้นสุด:</label><label for="end" id="event_end">เวลาสิ้นสุด:</label><br>
-      <label for="name">ผู้จอง:</label><label for="name" id="event_end">ผู้จอง:</label><br>
+      <input type="text" id="tp" value="" hidden>
 
       <button type="button" class="btn btn-primary" onclick="fixdata()" data-dismiss="modal">ปิดการประชุม</button>
 
@@ -617,7 +620,7 @@ $result = mysqli_query($conn, $sql2);
                           </div>
                           <div class="col">
                             <label>ถึง:</label>
-                            <input type="time" format="hh:mm:ss" id="time_end" class="form-control">
+                            <input type="time" format="hh:mm:ss" id="time_end" class="form-control" onchange="checktime()">
                           </div>
 
 

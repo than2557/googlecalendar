@@ -9,7 +9,7 @@ if($level == 1){
 ?>
 <table class="table table-bordered" id="myTable">
   <thead>
-    <tr>
+    <tr  style="background-color:#f9ebff;">
       <th>รหัสห้องประชุม</th>
       <th>ชื่อห้องประชุม</th>
       <th>ที่ตั้งห้องประชุม</th>
@@ -43,7 +43,7 @@ else{
  ?>
 <table class="table table-bordered" id="myTable">
   <thead>
-    <tr>
+    <tr  style="background-color:#f9ebff;">
       <th>รหัสห้องประชุม</th>
       <th>ชื่อห้องประชุม</th>
       <th>ที่ตั้งห้องประชุม</th>

@@ -200,9 +200,9 @@ require('configDB.php');
  </nav>
 
 <div class="card shadow container-md">
-		<table class="table table-bordered" id="myTable">
+		<table class="table table-bordered " id="myTable">
   <thead>
-    <tr>
+    <tr style="background-color:#f9ebff;">
       <th>รหัสการประชุม</th>
       <th>ชื่อการประชุม</th>
       <th>วันที่จอง</th>
