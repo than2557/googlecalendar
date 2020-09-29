@@ -5,10 +5,10 @@
          $conn=$DBconnect;
 
          $room_id = isset($_POST['room']) ? $_POST['room'] : "";
-        
+    
 
         $sqlroom = "SELECT event_tb.end,event_tb.time_start,event_tb.time_end,event_tb.id_event,event_tb.name_event,event_tb.start,event_tb.room_id,room_tb.room_location,room_tb.room_size,room_tb.room_owner_th,room_tb.room_name,empolyee.name FROM event_tb,empolyee,room_tb WHERE event_tb.room_id = room_tb.room_id and event_tb.username = empolyee.username and room_tb.room_id ='$room_id' GROUP BY id_event";
-        // echo $sqlroom;
+  
         $result_room = mysqli_query($conn,$sqlroom);
         $event_json = array();
         $i = 0;

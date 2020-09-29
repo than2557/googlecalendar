@@ -168,7 +168,7 @@ $(document).ready(function(){
     // console.log(time_period)
     console.log(username)
     $.ajax({
-type: "POST",
+        type: "POST",
         url: "quickstart.php",
         data: {"date": date, "event": event,"enddate": enddate, "room_id": data_room,"username":username,"time_start":time_start,"time_end":time_end},
         success:function(data) {
