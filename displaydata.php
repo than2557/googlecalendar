@@ -130,7 +130,8 @@ $conn=$DBconnect;
 <div id="wrapper">
 
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar">
+<ul class="navbar-nav bg-gradient sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar" style="background-color: #e2a2ff;
+    background-image: linear-gradient(180deg,#b788d0 70%,#f9b269c7 100%);">
 
 
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#"style="margin-top:50px;" onclick="backindex()">
@@ -188,7 +189,7 @@ $conn=$DBconnect;
 <div id="content">
 
  <!-- Topbar -->
- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-color: #ebc1f7;">
+ <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color: #ebc1f7;">
  <h1 class="h3 mb-0 text-gray-800">ระบบจองห้องประชุม</h1>
   
    <ul class="navbar-nav ml-auto">
