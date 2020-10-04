@@ -188,7 +188,7 @@ $conn=$DBconnect;
 <div id="content">
 
  <!-- Topbar -->
- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+ <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-color: #ebc1f7;">
  <h1 class="h3 mb-0 text-gray-800">ระบบจองห้องประชุม</h1>
   
    <ul class="navbar-nav ml-auto">

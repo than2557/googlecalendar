@@ -64,7 +64,7 @@ else{
       <td style="text-align:center;"><?=$row['id_event'];?></td>
       <td><?=$row['name_event'];?></td>
       <td><?=Thdate($row['start']);?></td>
-      <td><?=$row['end'];?></td>
+      <td><?=Thdate($row['end']);?></td>
       <td><?=$row['username'];?></td>
       <td><?=$row['name'];?></td>
     </tr>
