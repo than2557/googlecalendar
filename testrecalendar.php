@@ -406,10 +406,11 @@ $.ajax({
   <div id="wrapper">
     <!-- bg-gradient-success -->
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left" id="accordionSidebar"  onclick="backindex()">
+    <ul class="navbar-nav bg-gradient sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar" style="background-color: #e2a2ff;
+    background-image: linear-gradient(180deg,#b788d0 70%,#f9b269c7 100%);">
 
 
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#" style="margin-top:50px;">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#" style="margin-top:50px;" onclick="backindex()">
         <div class="sidebar-brand-icon">
           <i><img src="img/icon.png" style="width:200px;"></i>
         </div>
