@@ -14,7 +14,6 @@ $sql2 = "SELECT * FROM room_tb WHERE `username`";
 //  $_SESSION['userName'] 
 $result_room = mysqli_query($conn, $sql2);
 $result = mysqli_query($conn, $sql2);
-$room_id = $_GET['get'];
 
 
 ?>
@@ -51,22 +50,6 @@ $room_id = $_GET['get'];
   <script type="text/javascript" src="datatables.js"></script>
 
   <script>
-    function backindex(){
-var level = document.getElementById("level").value;
-console.log(level);
-if(level == 1){
-  open('index_admin.php');
-  close('testrecalendar.php');
- 
- 
-}
-else{
-  open('index_user.php');
-  close('testrecalendar.php');
-
-
-}
-}
  var dd = moment.locale('th');
     var id_room = '';
     var time_period = '';
@@ -142,151 +125,138 @@ else{
 
     }
 
-    $(document).ready(function() {
-      var room_id = document.getElementById("room").value;
-      console.log(room_id);
+    function selectroom() {
+      id_room = document.getElementById("select_room").value;
 
-$.ajax({
-  type: 'POST',
-  data: {
-    room: room_id
-  },
-  url: 'select_room.php',
-  success: function(data) {
-    // console.log(data);
-    var get = JSON.parse(data);
-    console.log(get);
+      $.ajax({
+        type: 'POST',
+        data: {
+          room: id_room
+        },
+        url: 'select_room.php',
+        success: function(data) {
+          // console.log(data);
+          var get = JSON.parse(data);
+          console.log(get);
 
-    var calendarEl = document.getElementById('calendar');
-    calendarEl.innerHTML = '';
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      height: 700,
-      themeSystem: 'bootstrap',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      initialDate: date_today,
-      locale: 'th',
+          var calendarEl = document.getElementById('calendar');
+          calendarEl.innerHTML = '';
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            height: 700,
+            themeSystem: 'bootstrap',
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            initialDate: date_today,
+            locale: 'th',
 
-      navLinks: true, // can click day/week names to navigate views
-      selectable: true,
-      selectMirror: true,
-      editable: true,
-      eventLimit: true,
+            navLinks: true, // can click day/week names to navigate views
+            selectable: true,
+            selectMirror: true,
+            editable: true,
+            eventLimit: true,
 
-      timezone: 'UTC',
-      //allow "more" link when too many events
-      events: get,
-      eventColor: '#275AF9',
-      eventTextColor: '#FBFAFC',
-      fontsize: '30px',
-      ///fuction popup
-      select: function(info) {
+            timezone: 'UTC',
+            //allow "more" link when too many events
+            events: get,
+            eventColor: '#275AF9',
+            eventTextColor: '#FBFAFC',
+            fontsize: '30px',
+            ///fuction popup
+            select: function(info) {
 
-        var TT = document.getElementById("tp").value;
-        var start = info.startStr;
+              var TT = document.getElementById("tp").value;
+              var start = info.startStr;
 
-        document.getElementById("startdate").value = start;
-        var check = info.startStr;
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-        // alert('select'+check);
+              document.getElementById("startdate").value = start;
+              var check = info.startStr;
+              var today = new Date();
+              var dd = String(today.getDate()).padStart(2, '0');
+              var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+              var yyyy = today.getFullYear();
+              today = yyyy + '-' + mm + '-' + dd;
+              // alert('select'+check);
 
-        if (check < today) {
+              if (check < today) {
+                Swal.fire({
+                  title: 'ไม่สามารถเพิ่มการประชุมได้',
+                  icon: 'warning',
+                  confirmButtonColor: '#3085d6',
+                })
+
+              } else {
+
+                var Eventform = $("#basicModal").modal();
+              }
+
+            },
+            eventClick: function(info) {
+              var Eventpopup = $("#datainfo").modal();
+              console.log(info.event.extendedProps.room_name);
+              document.getElementById("room_modal").innerHTML = info.event.extendedProps.room_name;
+              document.getElementById("name").innerHTML = info.event.extendedProps.name
+              document.getElementById("title").innerHTML = info.event.title;
+              document.getElementById("event_start").innerHTML = moment(info.event.start).add(543, 'year').format('MMMM Do YYYY, h:mm:ss a');
+              document.getElementById("event_end").innerHTML =  moment(info.event.end).add(543, 'year').format('MMMM Do YYYY, h:mm:ss a');
+              document.getElementById("name").innerHTML =info.event.extendedProps.name;
+
+              var tp = info.event.extendedProps.idevent;
+              document.getElementById("tp").value = tp;
+
+            }
+          });
+          calendar.destroy();
+          calendar.render();
+
+
+        },
+        error: function(jqXHR, text, error) {
+          // Displaying if there are any errors
           Swal.fire({
-            title: 'ไม่สามารถเพิ่มการประชุมได้',
-            icon: 'warning',
-            confirmButtonColor: '#3085d6',
-          })
-
-        } else {
-
-          var Eventform = $("#basicModal").modal();
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href>Why do I have this issue?</a>'
+          });
         }
+      });
+      $.ajax({
+        type: "POST",
+        url: "select_detailroom.php",
+        data: {
+          "room_id": id_room
+        },
+        success: function(data) {
+          var dataroom = JSON.parse(data);
+          // console.log(dataroom);
+          console.log(dataroom[0].room_location);
+          console.log(dataroom[0].room_size);
+          console.log(dataroom[0].room_name);
+          console.log(dataroom[0].room_id);
 
-      },
-      eventClick: function(info) {
-        var Eventpopup = $("#datainfo").modal();
-        console.log(info.event.extendedProps.room_name);
-        document.getElementById("room_modal").innerHTML = info.event.extendedProps.room_name;
-        document.getElementById("name").innerHTML = info.event.extendedProps.name
-        document.getElementById("title").innerHTML = info.event.title;
-        document.getElementById("event_start").innerHTML = moment(info.event.start).add(543, 'year').format('MMMM Do YYYY, h:mm:ss a');
-        document.getElementById("event_end").innerHTML =  moment(info.event.end).add(543, 'year').format('MMMM Do YYYY, h:mm:ss a');
-        document.getElementById("name").innerHTML =info.event.extendedProps.name;
+          document.getElementById("room_location").innerHTML = dataroom[0].room_location;
+          document.getElementById("room_size").innerHTML = dataroom[0].room_size;
+          // document.getElemetById("room_select").value = room_id;
+        }
+      });
 
-        var tp = info.event.extendedProps.idevent;
-        document.getElementById("tp").value = tp;
+      $.ajax({
+        type: "POST",
+        url: "select_room2.php",
+        data: {
+          "room_id": id_room
+        },
+        success: function(data) {
 
-      }
-    });
-    calendar.destroy();
-    calendar.render();
-  },
-  error: function(jqXHR, text, error) {
-    // Displaying if there are any errors
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Something went wrong!',
-      footer: '<a href>Why do I have this issue?</a>'
-    });
-  }
-});
-$.ajax({
-  type: "POST",
-  url: "select_detailroom.php",
-  data: {
-    "room_id": room_id
-  },
-  success: function(data) {
-    var dataroom = JSON.parse(data);
-    // console.log(dataroom);
-    console.log(dataroom[0].room_location);
-    console.log(dataroom[0].room_size);
-    console.log(dataroom[0].room_name);
-    console.log(dataroom[0].room_id);
+          $('#room_select').html(data);
 
-    document.getElementById("room_location").innerHTML = dataroom[0].room_location;
-    document.getElementById("room_size").innerHTML = dataroom[0].room_size;
-    // document.getElemetById("room_select").value = room_id;
-  }
-});
+        }
+      });
 
-$.ajax({
-  type: "POST",
-  url: "select_room2.php",
-  data: {
-    "room_id": room_id
-  },
-  success: function(data) {
+    }
 
-    $('#room_select').html(data);
-
-  }
-});
-
-$.ajax({
-  type: "POST",
-  url: "select_room2.php",
-  data: {
-    "room_id": room_id
-  },
-  success: function(data) {
-
-    $('#select_room').html(data);
-
-  }
-});
-
- });
-
-  
     function myFunction(e) {
       var Eventform = $("#basicModal").modal();
     }
@@ -314,7 +284,47 @@ $.ajax({
 
     });
 
+    $(document).ready(function() {
+      var room_id = document.getElementById("room").value;
+      console.log(room_id);
+      $.ajax({
+        type: 'POST',
+        url: 'data_event.php',
+        data: {
+          "room_id": room_id
+        },
+        success: function(data) {
+          var getdata = JSON.parse(data);
+          console.log(getdata);
 
+
+
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            themeSystem: 'bootstrap',
+            height: 700,
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+
+            },
+            initialDate: date_today,
+            locale: 'th',
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            dayMaxEvents: true, // allow "more" link when too many events
+            events: getdata
+          });
+
+          calendar.render();
+
+
+
+        }
+
+      });
+    });
 
     function checktime() {
       var date = document.getElementById("startdate").value;
@@ -372,7 +382,7 @@ $.ajax({
 </head>
 
 <body>
-<input id="level" value="<?php echo $_SESSION['level'];  ?>" hidden>
+
   <div class="modal" id="datainfo" tabindex="-1">
 
     <div class="modal-header" style="width:500px;background-color:#FAF1F1;margin-top:10%;margin-left:35%;">
@@ -401,12 +411,12 @@ $.ajax({
 
 
   <!-- Page Wrapper -->
-  <input id="room" value="<?php echo $room_id;?>" hidden>
+  <input id="room" value="1" hidden>
 
   <div id="wrapper">
     <!-- bg-gradient-success -->
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left" id="accordionSidebar"  onclick="backindex()">
+    <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left" id="accordionSidebar">
 
 
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#" style="margin-top:50px;">
@@ -504,8 +514,13 @@ $.ajax({
             <!-- Card Header - Dropdown -->
             <div class="card-header  d-flex flex-row align-items-center justify-content-between">
 
-              <h6 class="m-0 font-weight-bold">ห้องประชุม:<label id="select_room"></label></h6>
-            
+              <h6 class="m-0 font-weight-bold">ข้อมูลการจองห้องประชุม:</h6>
+              <select class="form-control" name="select_room" style="width: 200px;" id="select_room" onchange="selectroom()">
+                <option value="">--เลือกห้องประชุม--</option>
+                <?php while ($row = mysqli_fetch_array($result)) {
+                  echo '<option value="' . $row['room_id'] . '">' . $row['room_name'] . '</option>';
+                } ?>
+              </select>
             </div>
 
             <div class="card" style="width:1200px;">

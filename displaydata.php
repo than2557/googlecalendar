@@ -61,7 +61,7 @@ else{
 }
 	$(document).ready( function () {
     $('#myTable').DataTable({  
-      
+      "pageLength": '7',
       "columnDefs": [{ "width": "5%", "targets": 0 }],
   "language": {
               "sProcessing": "กำลังดำเนินการ...",
@@ -93,11 +93,31 @@ else{
 session_start();
 date_default_timezone_set("Asia/Bangkok");
 require('configDB.php');
- $conn=$DBconnect;
+include_once('vendor\rundiz\thai-date\Rundiz\Thaidate\thaidate-functions.php');
+include_once('vendor\rundiz\thai-date\Rundiz\Thaidate\Thaidate.php');
+$conn=$DBconnect;
 
 
  $sql = "SELECT empolyee.name,event_tb.name_event,event_tb.id_event,empolyee.username,department.name_department,department.id_department,event_tb.room_id,room_tb.room_name,event_tb.start,event_tb.end,event_tb.time_start,event_tb.time_end FROM department,room_tb,event_tb,empolyee WHERE event_tb.room_id = room_tb.room_id and event_tb.username =empolyee.username and empolyee.id_department = department.id_department GROUP BY id_event";
  $result_event = mysqli_query($conn,$sql);
+ function ThDate()
+ {
+ //วันภาษาไทย
+ $ThDay = array ( "อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์" );
+ //เดือนภาษาไทย
+ $ThMonth = array ( "มกรามก", "กุมภาพันธ์", "มีนาคม", "เมษายน","พฤษภาคม", "มิถุนายน", "กรกฏาคม", "สิงหาคม","กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม" );
+  
+ //กำหนดคุณสมบัติ
+ $week = date( "w" ); // ค่าวันในสัปดาห์ (0-6)
+ $months = date( "m" )-1; // ค่าเดือน (1-12)
+ $day = date( "d" ); // ค่าวันที่(1-31)
+ $years = date( "Y" )+543; // ค่า ค.ศ.บวก 543 ทำให้เป็น ค.ศ.
+  
+ return "วัน
+     ที่ $day  
+     $ThMonth[$months] 
+     พ.ศ. $years";
+ }
 
 	?>
 
@@ -199,16 +219,16 @@ require('configDB.php');
 
  </nav>
 
-<div class="card shadow container-md">
-		<table class="table table-bordered " id="myTable">
+<div class="card shadow w-100">
+		<table class="table table-bordered " id="myTable" >
   <thead>
     <tr style="background-color:#f9ebff;">
       <th>รหัสการประชุม</th>
+      <th>ห้องประชุม</th>
       <th>ชื่อการประชุม</th>
       <th>วันที่จอง</th>
       <th>ถึงวันที่</th>
-      <th>เวลาเริ่ม</th>
-      <th>ถึงเวลา</th>
+      <th>เวลา</th>
       <th>ผู้จอง</th>
       <th>ชื่อแผนก</th>
       <th>แก้ไข</th>
@@ -222,11 +242,11 @@ require('configDB.php');
 
     <tr>
       <td style="text-align:center;"><?=$row['id_event'];?></td>
+      <td><?=$row['room_name'];?></td>
       <td><?=$row['name_event'];?></td>
-      <td><?=$row['start'];?></td>
-      <td><?=$row['end'];?></td>
-      <td><?=$row['time_start'];?></td>
-      <td><?=$row['time_end'];?></td>
+      <td><?=ThDate($row['start']);?></td>
+      <td><?=ThDate($row['end']);?></td>
+      <td><?=$row['time_start'].'-'.$row['time_end'];?></td>
       <td><?=$row['name'];?></td>
       <td><?=$row['name_department'];?></td>
       <td><a href="event_updateform.php?id_event=<?=$row['id_event'];?>"><img src="upload/Edit-512.png" style="width:50px;"></a></td>

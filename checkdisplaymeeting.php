@@ -44,7 +44,7 @@ if($level == 1){
 
 else{
  ?>
-<table class="table table-bordered" id="myTable" style="background-color:#ffff;width:1000px;height:400px ;margin-left:0%;margin-top:10%;">
+<table class="table table-bordered" id="myTable" style="background-color:#f9ebff;width:1000px;height:400px ;margin-left:0%;margin-top:10%;">
   <thead>
     <tr>
       <th>รหัสการประชุม</th>
@@ -63,7 +63,7 @@ else{
     <tr>
       <td style="text-align:center;"><?=$row['id_event'];?></td>
       <td><?=$row['name_event'];?></td>
-      <td><?=$row['start'];?></td>
+      <td><?=Thdate($row['start']);?></td>
       <td><?=$row['end'];?></td>
       <td><?=$row['username'];?></td>
       <td><?=$row['name'];?></td>

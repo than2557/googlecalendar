@@ -42,6 +42,7 @@
 <script type="text/javascript" src="datatables.js"></script>
 
 <script type="text/javascript">
+
 function backindex(){
 var level = document.getElementById("level").value;
 console.log(level);
@@ -97,6 +98,24 @@ $username=$_SESSION['username'];
 // echo $username;
  $sql = "SELECT event_tb.name_event,event_tb.id_event,event_tb.start,event_tb.end,event_tb.time_start,event_tb.time_end,event_tb.username,empolyee.name,room_tb.room_id,room_tb.room_name FROM event_tb,empolyee,room_tb WHERE event_tb.room_id =room_tb.room_id and event_tb.username = empolyee.username and event_tb.username = '$username' GROUP BY id_event ";
  $result_event = mysqli_query($conn,$sql);
+ function ThDate()
+ {
+ //วันภาษาไทย
+ $ThDay = array ( "อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์" );
+ //เดือนภาษาไทย
+ $ThMonth = array ( "มกรามก", "กุมภาพันธ์", "มีนาคม", "เมษายน","พฤษภาคม", "มิถุนายน", "กรกฏาคม", "สิงหาคม","กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม" );
+  
+ //กำหนดคุณสมบัติ
+ $week = date( "w" ); // ค่าวันในสัปดาห์ (0-6)
+ $months = date( "m" )-1; // ค่าเดือน (1-12)
+ $day = date( "d" ); // ค่าวันที่(1-31)
+ $years = date( "Y" )+543; // ค่า ค.ศ.บวก 543 ทำให้เป็น ค.ศ.
+  
+ return "วัน
+     ที่ $day  
+     $ThMonth[$months] 
+     พ.ศ. $years";
+ }
 
 	?>
 
