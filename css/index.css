@@ -17,15 +17,9 @@ img.martop{
     width:400px;
 }
 body{
-  background-color: #b98f3b;
+  background-color: #b681bd;
 }
-/* html {
-    padding-top: 50px;
-    font-family: 'Open Sans', Helvetica, arial, sans-serif;
-    text-align: center;
-    background-color: #eeeeee;
-  } */
- 
+
   html *,
   html *:before,
   html *:after {
