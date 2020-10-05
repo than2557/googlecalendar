@@ -158,7 +158,7 @@ console.log(data_room);
      <i class="fas fa-fw fa-cog"></i>
      <span class="textsize" style="font-size:20px;">เมนู</span>
    </a>
-   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+   <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
      <div class="bg-white py-2 collapse-inner rounded">
      <?php include('check_menutool.php');?>
      </div>
@@ -171,7 +171,7 @@ console.log(data_room);
      <i class="fas fa-fw fa-table"></i>
      <span style="font-size:20px;">รายงาน</span>
    </a>
-   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+   <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
      <div class="bg-white py-2 collapse-inner rounded">
      <?php include('check_menudisplay.php');?>
      </div>
