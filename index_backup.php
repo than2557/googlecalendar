@@ -59,7 +59,22 @@ $result = mysqli_query($conn, $sql2);
     var yyyy = date_today.getFullYear();
     date_today = yyyy + '-' + mm + '-' + dd;
 
+    function backindex(){
+var level = document.getElementById("level").value;
+console.log(level);
+if(level == 1){
+  close('index_backup.php');
+  open('index_admin.php');
 
+ 
+ 
+}
+else{
+  close('index_backup.php');
+  open('index_user.php');
+
+}
+}
     function sentcalendar() {
 
       var event = document.getElementById("event").value;
@@ -382,7 +397,7 @@ $result = mysqli_query($conn, $sql2);
 </head>
 
 <body>
-
+<input id="level" value="<?php echo $_SESSION['level'];  ?>" hidden>
   <div class="modal" id="datainfo" tabindex="-1">
 
     <div class="modal-header" style="width:500px;background-color:#FAF1F1;margin-top:10%;margin-left:35%;">
@@ -416,10 +431,11 @@ $result = mysqli_query($conn, $sql2);
   <div id="wrapper">
     <!-- bg-gradient-success -->
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion fixed-left" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient sidebar sidebar-dark accordion fixed-left"   id="accordionSidebar" style="background-color: #e2a2ff;
+    background-image: linear-gradient(180deg,#b788d0 70%,#f9b269c7 100%);">
 
 
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#" style="margin-top:50px;">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#" style="margin-top:50px;" onclick="backindex()">
         <div class="sidebar-brand-icon">
           <i><img src="img/icon.png" style="width:200px;"></i>
         </div>
@@ -472,7 +488,7 @@ $result = mysqli_query($conn, $sql2);
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color: #ebc1f7;">
           <h1 class="h3 mb-0 text-gray-800">ระบบจองห้องประชุม</h1>
 
           <ul class="navbar-nav ml-auto">

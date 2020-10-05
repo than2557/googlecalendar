@@ -264,7 +264,7 @@ console.log(data_room);
       <td id="room_location"><?=$row['room_location'];?></td>
       <td id="room_type" ><?=$row['room_type'];?></td>
       <td  id="room_size" style="text-align: right;"><?=$row['room_size'];?></td>
-      <td><button type="button" id="idroom"class="btn btn-info btnSelect" value="<?=$dataroom['room_id'];?>">จองห้องประชุม</button></td>
+      <td><button type="button" id="idroom"class="btn btn-primary btnSelect" value="<?=$dataroom['room_id'];?>">จองห้องประชุม</button></td>
     
     </tr>
 
