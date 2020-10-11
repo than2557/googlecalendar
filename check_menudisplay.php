@@ -15,7 +15,7 @@ if($level == 1){
 
 else{
  ?>
-       <a class="collapse-item"style="font-size:14px;"  href="display_chart.php">ข้อมูลสถิติการใช่ห้องประชุม</a>
+       <!-- <a class="collapse-item"style="font-size:14px;"  href="display_chart.php">ข้อมูลสถิติการใช่ห้องประชุม</a>-->
        <a class="collapse-item" style="font-size:14px;"  href="display_room.php">ข้อมูลห้องประชุม</a>
        <a class="collapse-item" style="font-size:14px;"  href="displaymeeting.php">ข้อมูลการจอง</a>
 
