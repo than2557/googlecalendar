@@ -116,7 +116,17 @@ $username=$_SESSION['username'];
      $ThMonth[$months] 
      พ.ศ. $years";
  }
+ 
+ function DateThai($strDate)
+ {
+   $strYear = date("Y",strtotime($strDate))+543;
+   $strMonth= date("n",strtotime($strDate));
+   $strDay= date("j",strtotime($strDate));
 
+   $strMonthCut = Array( "มกรามก", "กุมภาพันธ์", "มีนาคม", "เมษายน","พฤษภาคม", "มิถุนายน", "กรกฏาคม", "สิงหาคม","กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม" );
+   $strMonthThai=$strMonthCut[$strMonth];
+   return "$strDay $strMonthThai $strYear";
+ }
 	?>
 
 

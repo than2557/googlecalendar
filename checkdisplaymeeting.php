@@ -4,7 +4,6 @@ date_default_timezone_set("Asia/Bangkok");
        
          $level = $_SESSION['level'];
 
-
 if($level == 1){
 ?>
 <table class="table table-bordered" id="myTable" style="background-color:#ffff;width:1000px;height:400px ;margin-left:0%;margin-top:10%;">
@@ -63,8 +62,8 @@ else{
     <tr>
       <td style="text-align:center;"><?=$row['id_event'];?></td>
       <td><?=$row['name_event'];?></td>
-      <td><?=Thdate($row['start']);?></td>
-      <td><?=Thdate($row['end']);?></td>
+      <td><?=DateThai($row['start']);?></td>
+      <td><?=DateThai($row['end']);?></td>
       <td><?=$row['username'];?></td>
       <td><?=$row['name'];?></td>
     </tr>

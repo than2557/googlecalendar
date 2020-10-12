@@ -231,9 +231,15 @@ console.log(data_room);
 
 
 
+ <div class="container" style="margin-left:600px;">
+<div class="row">
+<div class="col-sm-4">
+<h1 class="card shadow"for="text">ข้อมูลห้องประชุม</h1>
+</div>
+</div>
+</div>
 
-
-<div class="card shadow container-md" style="margin-top:150px;">
+<div class="card shadow container-md" style="margin-top:50px;">
 <label for="text" >ข้อมูลห้องประชุม</label>
 </div>
 <div class="card shadow container-md mb-5">

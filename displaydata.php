@@ -14,7 +14,7 @@
       <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
         <link rel="stylesheet" href="css/index_admin.css">
 
 <link rel="stylesheet" href="js/fullcalendar-5.3.0/lib/main.css">
@@ -30,7 +30,7 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
        
       
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -59,6 +59,20 @@ else{
 
 }
 }
+function checkstart(){
+var start = document.getElementById("start").value;
+console.log(start);
+$.ajax({
+    type: "POST",
+    url:"checkday.php",
+    data:{"start":start},
+    success: function(data) {
+       
+        $('#datatable').html(data);  
+        }
+   });
+
+}
 	$(document).ready( function () {
     $('#myTable').DataTable({  
       "pageLength": '7',
@@ -85,6 +99,7 @@ else{
      });
     
 } );
+
 </script>
 	<title>display</title>
 
@@ -113,11 +128,22 @@ $conn=$DBconnect;
  $day = date( "d" ); // ค่าวันที่(1-31)
  $years = date( "Y" )+543; // ค่า ค.ศ.บวก 543 ทำให้เป็น ค.ศ.
   
- return "วัน
-     ที่ $day  
+ return "$day  
      $ThMonth[$months] 
      พ.ศ. $years";
  }
+
+ function DateThai($strDate)
+	{
+		$strYear = date("Y",strtotime($strDate))+543;
+		$strMonth= date("n",strtotime($strDate));
+		$strDay= date("j",strtotime($strDate));
+
+		$strMonthCut = Array( "มกรามก", "กุมภาพันธ์", "มีนาคม", "เมษายน","พฤษภาคม", "มิถุนายน", "กรกฏาคม", "สิงหาคม","กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม" );
+		$strMonthThai=$strMonthCut[$strMonth];
+		return "$strDay $strMonthThai $strYear";
+	}
+
 
 	?>
 
@@ -125,7 +151,6 @@ $conn=$DBconnect;
 </head>
 
 
-<body>
 <input id="level" value="<?php echo $_SESSION['level'];  ?>" hidden>
 <div id="wrapper">
 
@@ -159,6 +184,7 @@ $conn=$DBconnect;
 
  <li class="nav-item">
    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+<body>
      <i class="fas fa-fw fa-table"></i>
      <span style="font-size:20px;"></span>
    </a>
@@ -219,7 +245,18 @@ $conn=$DBconnect;
    </ul>
 
  </nav>
+ <div class="container card shadow" style="width:500px;">
+<div class="row  mr-4">
+<h1 class="card shadow"for="text">ข้อมูลการจองห้องประชุม</h1>
+<label for="text" class="mt-0" style="font-size:30px;">วันที่:</label>
+<div class="col-sm-5">
 
+
+<input type="date" class="form-control" id="start"  name="start" style="width:300px;">
+</div>
+</div>
+</div>
+<br>
 <div class="card shadow w-100">
 		<table class="table table-bordered " id="myTable" >
   <thead>
@@ -245,8 +282,8 @@ $conn=$DBconnect;
       <td style="text-align:center;"><?=$row['id_event'];?></td>
       <td><?=$row['room_name'];?></td>
       <td><?=$row['name_event'];?></td>
-      <td><?=ThDate($row['start']);?></td>
-      <td><?=ThDate($row['end']);?></td>
+      <td><?=DateThai($row['start']);?></td>
+      <td><?=DateThai($row['end']);?></td>
       <td><?=$row['time_start'].'-'.$row['time_end'];?></td>
       <td><?=$row['name'];?></td>
       <td><?=$row['name_department'];?></td>

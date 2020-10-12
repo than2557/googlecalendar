@@ -144,14 +144,13 @@ $.ajax({
 
     <li class="nav-item" style="margin-top:50px;">
    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-     <i class="fas fa-fw fa-cog"></i>
+     <!-- <i class="fas fa-fw fa-cog"></i> -->
      <span class="textsize" style="font-size:20px;"></span>
    </a>
    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
      <div class="bg-white py-2 collapse-inner rounded">
-
-       <a class="collapse-item textsize" style="font-size:20px;" href="Reservemeetingroom.php">จองห้องประชุม</a>
-       <a class="collapse-item mb-0" style="font-size:20px;" href="addmeetingroom_form.php">เพิ่มห้องประชุม</a>
+     <?php include('check_menutool.php');?>
+     
      </div>
    </div>
  </li>
@@ -159,15 +158,12 @@ $.ajax({
 
  <li class="nav-item">
    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-     <i class="fas fa-fw fa-table"></i>
+     <!-- <i class="fas fa-fw fa-table"></i> -->
      <span style="font-size:20px;"></span>
    </a>
    <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
      <div class="bg-white py-2 collapse-inner rounded">
-      
-     <a class="collapse-item" style="font-size:14px;" href="displaydata.php">ข้อมูลการจองห้องประชุม</a>
-       <a class="collapse-item"style="font-size:14px;"  href="display_chart.php">ข้อมูลสถิติการใช่ห้องประชุม</a>
-       <a class="collapse-item" style="font-size:14px;"  href="display_room.php">ข้อมูลห้องประชุม</a>
+     <?php include('check_menudisplay.php');?>
      </div>
    </div>
  </li>
@@ -224,7 +220,7 @@ $.ajax({
 
 <div  class="card shadow" style="width:700px;height:100px;background-color:#ffff;margin-top:5%;margin-left:25%;">
 
-<label for="" style="font-size: 200%;margin-top:4%;margin-left:30%;">จำนวนการใช้ห้องประชุม</label>
+<label for="" style="font-size: 200%;margin-top:4%;margin-left:30%;">ข้อมูลสถิติการใช่ห้องประชุม</label>
 </div>
     <div class="card shadow" style="width:500px;margin-left:10%;margin-top:1%;height:100px;">
     <select  style="width:300px;margin-left:20%;margin-top:3%;"  class="form-control" name="select_year" id="select_year" onchange="selectyear()">
