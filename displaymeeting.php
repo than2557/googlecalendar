@@ -224,15 +224,16 @@ $username=$_SESSION['username'];
    </ul>
 
  </nav>
-
-<div class="card shadow container-sm">
+ <div class="container" style="margin-left:600px;">
+<div class="row">
+<div class="col-sm-6 card shadow">
+<h1 class=""for="text" style="margin-left:80px;" >ข้อมูลการจองห้องประชุม</h1>
+</div>
+</div>
+</div>
+<div class="card shadow container-sm mt-4">
 		<?php include('checkdisplaymeeting.php')?>
 
-
-
-
-
-	
 </div>
 
 </body>

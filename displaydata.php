@@ -73,10 +73,10 @@ $.ajax({
    });
 
 }
-	$(document).ready( function () {
+$(document).ready( function () {
     $('#myTable').DataTable({  
-      "pageLength": '7',
-      "columnDefs": [{ "width": "5%", "targets": 0 }],
+      
+      "columnDefs": [{ "width": "20%", "targets": 0 }],
   "language": {
               "sProcessing": "กำลังดำเนินการ...",
               "sLengthMenu": "แสดง_MENU_ แถว",
@@ -245,18 +245,32 @@ $conn=$DBconnect;
    </ul>
 
  </nav>
- <div class="container card shadow" style="width:500px;">
-<div class="row  mr-4">
-<h1 class="card shadow"for="text">ข้อมูลการจองห้องประชุม</h1>
+
+
+
+ <div class="container" style="margin-left:600px;">
+<div class="row">
+<div class="col-sm-5 card shadow">
+<h1 class=""for="text" style="margin-left:100px;" >ข้อมูลห้องประชุม</h1>
 <label for="text" class="mt-0" style="font-size:30px;">วันที่:</label>
 <div class="col-sm-5">
-
-
 <input type="date" class="form-control" id="start"  name="start" style="width:300px;">
 </div>
 </div>
 </div>
-<br>
+</div>
+
+ <!-- <div class="container card shadow" style="width:500px;">
+<div class="row  mr-4">
+<h1 class="card shadow"for="text">ข้อมูลการจองห้องประชุม</h1>
+<label for="text" class="mt-0" style="font-size:30px;">วันที่:</label>
+<div class="col-sm-5">
+<input type="date" class="form-control" id="start"  name="start" style="width:300px;">
+</div>
+</div>
+</div> -->
+
+
 <div class="card shadow w-100">
 		<table class="table table-bordered " id="myTable" >
   <thead>

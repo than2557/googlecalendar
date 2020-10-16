@@ -93,8 +93,19 @@ $.ajax({
     url:"checkday.php",
     data:{"start":start},
     success: function(data) {
-       
-        $('#datatable').html(data);  
+       if(data){      
+          $('#datatable').html(data); 
+         }
+     else{
+   
+ Swal.fire({
+  icon: 'error',
+  title: 'ไม่มีข้อมูลการประชุม...',
+ 
+});
+
+     }
+ 
         }
    });
 
@@ -240,13 +251,13 @@ $conn=$DBconnect;
  </nav>
 <div class="container card shadow" style="width:500px;">
 <div class="row  mr-4">
-<h1 class="card shadow"for="text">ข้อมูลการจองห้องประชุม</h1>
+<h1 class="card shadow"for="text" style='margin-left:30px;'>ข้อมูลการจองห้องประชุม</h1>
 <label for="text" class="mt-0" style="font-size:30px;">วันที่:</label>
 <div class="col-sm-5">
 
 
 <input type="date" class="form-control" id="start"  name="start" style="width:300px;" onchange="checkstart()">
-</div>
+</div>  
 </div>
 </div>
 

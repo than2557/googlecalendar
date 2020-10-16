@@ -200,8 +200,8 @@ require('configDB.php');
 
  <div class="container" style="margin-left:600px;">
 <div class="row">
-<div class="col-sm-4">
-<h1 class="card shadow"for="text">ข้อมูลห้องประชุม</h1>
+<div class="col-sm-5 card shadow">
+<h1 class=""for="text" style="margin-left:80px;" >ข้อมูลห้องประชุม</h1>
 </div>
 </div>
 </div>

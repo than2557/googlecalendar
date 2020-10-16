@@ -6,8 +6,8 @@ date_default_timezone_set("Asia/Bangkok");
 
 if($level == 1){
 ?>
-<table class="table table-bordered" id="myTable" style="background-color:#ffff;width:1000px;height:400px ;margin-left:0%;margin-top:10%;">
-  <thead>
+<table class="table table-bordered mt-4" id="myTable" style="margin-top:100px;">
+  <thead class="table-primary">
     <tr style="background-color:#f9ebff;">
       <th>รหัสการประชุม</th>
       <th>ชื่อการประชุม</th>
@@ -43,8 +43,8 @@ if($level == 1){
 
 else{
  ?>
-<table class="table table-bordered" id="myTable" style="background-color:#f9ebff;width:1000px;height:400px ;margin-left:0%;margin-top:10%;">
-  <thead>
+<table class="table table-bordered mt-4" id="myTable">
+  <thead class="table-primary">
     <tr>
       <th>รหัสการประชุม</th>
       <th>ชื่อการประชุม</th>
