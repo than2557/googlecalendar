@@ -8,8 +8,8 @@ include_once('vendor\rundiz\thai-date\Rundiz\Thaidate\Thaidate.php');
 $conn=$DBconnect;
 
 
- $sql = "SELECT empolyee.name,event_tb.name_event,event_tb.id_event,empolyee.username,department.name_department,department.id_department,event_tb.room_id,room_tb.room_name,event_tb.start,event_tb.end,event_tb.time_start,event_tb.time_end FROM department,room_tb,event_tb,empolyee WHERE event_tb.room_id = room_tb.room_id and event_tb.username =empolyee.username and empolyee.id_department = department.id_department GROUP BY id_event";
- $result_event = mysqli_query($conn,$sql);
+//  $sql = "SELECT empolyee.name,event_tb.name_event,event_tb.id_event,empolyee.username,department.name_department,department.id_department,event_tb.room_id,room_tb.room_name,event_tb.start,event_tb.end,event_tb.time_start,event_tb.time_end FROM department,room_tb,event_tb,empolyee WHERE event_tb.room_id = room_tb.room_id and event_tb.username =empolyee.username and empolyee.id_department = department.id_department GROUP BY id_event";
+//  $result_event = mysqli_query($conn,$sql);
  function ThDate()
  {
  //วันภาษาไทย
@@ -153,6 +153,33 @@ $(document).ready(function() {
         }
    });
 });
+
+
+function checkstart(){
+var start = document.getElementById("start").value;
+console.log(start);
+$.ajax({
+    type: "POST",
+    url:"checkday.php",
+    data:{"start":start},
+    success: function(data) {
+       if(data){      
+          $('#datatable').html(data); 
+         }
+     else{
+   
+ Swal.fire({
+  icon: 'error',
+  title: 'ไม่มีข้อมูลการประชุม...',
+ 
+});
+
+     }
+ 
+        }
+   });
+
+}
 </script>
 	<title>display</title>
 
@@ -222,7 +249,7 @@ $(document).ready(function() {
 
  <!-- Topbar -->
  <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color: #ebc1f7;">
- <h1 class="h3 mb-0 text-gray-800">เลื่อกวันที่แสดงข้อมูลการประชุม</h1>
+ <h1 class="h3 mb-0 text-gray-800">เลือกวันที่แสดงข้อมูลการประชุม</h1>
   
    <ul class="navbar-nav ml-auto">
 
@@ -258,7 +285,7 @@ $(document).ready(function() {
 <div class="col-sm-5">
 
 
-<input type="date" class="form-control" id="start"  name="start" style="width:300px;" value="date">
+<input type="date" class="form-control" id="start"  name="start" style="width:300px;" value="date"  onchange="checkstart()">
 </div>  
 </div>
 </div>
@@ -283,25 +310,13 @@ $(document).ready(function() {
     </tr>
   </thead>
   <tbody id="datatable">
-     <?php
+     <!-- <?php
   while($row = $result_event->fetch_assoc()){
-    ?>
+    ?> -->
 
-    <tr>
-      <td style="text-align:center;"><?=$row['id_event'];?></td>
-      <td><?=$row['room_name'];?></td>
-      <td><?=$row['name_event'];?></td>
-      <td><?=DateThai($row['start']);?></td>
-      <td><?=DateThai($row['end']);?></td>
-      <td><?=$row['time_start'].'-'.$row['time_end'];?></td>
-      <td><?=$row['name'];?></td>
-      <td><?=$row['name_department'];?></td>
-      <td><a href="event_updateform.php?id_event=<?=$row['id_event'];?>"><img src="upload/Edit-512.png" style="width:50px;"></a></td>
-      <td><a href="event_del.php?id_event=<?=$row['id_event'];?>" onClick="return window.confirm('แน่ใจเหรอ?')"><img src="upload/47-512.png" style="width:50px;"></a></td>
-      
-    </tr>
 
-    <?php }?>  
+
+    <!-- <?php }?>   -->
   </tbody>
 </table>
 

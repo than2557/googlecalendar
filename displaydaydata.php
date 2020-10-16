@@ -220,7 +220,7 @@ $conn=$DBconnect;
 
  <!-- Topbar -->
  <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color: #ebc1f7;">
- <h1 class="h3 mb-0 text-gray-800">เลื่อกวันที่แสดงข้อมูลการประชุม</h1>
+ <h1 class="h3 mb-0 text-gray-800">เลือกวันที่แสดงข้อมูลการประชุม</h1>
   
    <ul class="navbar-nav ml-auto">
 
