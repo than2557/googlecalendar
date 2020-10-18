@@ -298,15 +298,15 @@ $.ajax({
   <thead>
     <tr style="background-color:#f9ebff;">
       <th>รหัสการประชุม</th>
-      <th>ห้องประชุม</th>
+      <th style="width:100px;">ห้องประชุม</th>
       <th>ชื่อการประชุม</th>
       <th>วันที่จอง</th>
       <th>ถึงวันที่</th>
       <th>เวลา</th>
       <th>ผู้จอง</th>
       <th>ชื่อแผนก</th>
-      <th>แก้ไข</th>
-      <th>ลบ</th>
+      <th style="width:30px;">แก้ไข</th>
+      <th style="width:30px;">ลบ</th>
     </tr>
   </thead>
   <tbody id="datatable">

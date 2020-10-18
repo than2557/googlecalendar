@@ -82,20 +82,19 @@ else{
       var event = document.getElementById("event").value;
       var date = document.getElementById("startdate").value;
       var enddate = document.getElementById("enddate").value;
-      // var time_period = document.getElementById("time_period").value;
+
       var room_id = document.getElementById("room_select").value;
-      // var visitor = document.getElementById("visitor").value;
+    
       var time_start = document.getElementById("time_start").value;
       var time_end = document.getElementById("time_end").value;
 
       console.log(date)
       console.log(event)
-      // console.log(visitor)
       console.log(enddate)
-      console.log(time_period)
       console.log(room_id)
       console.log(time_start)
       console.log(time_end)
+
       $.ajax({
         type: "POST",
         url: "quickstart.php",
