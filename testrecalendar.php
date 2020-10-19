@@ -87,7 +87,7 @@ else{
     
       var time_start = document.getElementById("time_start").value;
       var time_end = document.getElementById("time_end").value;
-
+      
       console.log("date:"+date)
       console.log("event:"+event)
       console.log("enddate:"+enddate)
@@ -475,7 +475,7 @@ $.ajax({
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['name'];  ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="name_emp" name="name_emp"><?php echo $_SESSION['name'];  ?></span>
 
                 <img class="img-profile rounded-circle material-icons" src="img/account.png">
               </a>

@@ -6,14 +6,14 @@ $conn=$DBconnect;
 require __DIR__ . '/vendor/autoload.php';
 $date = $_POST['date'];
 $eventname =$_POST['event'];
-$start= $_POST['start'];
-$end =$_POST['end'];
+// $start= $_POST['start'];
+// $end =$_POST['end'];
 $enddate = $_POST['enddate'];
 
 $room_id=$_POST['room_id'];
 $username = $_SESSION['username'];
 
-$visitor =$__SESSION['name'];
+$visitor =$_SESSION['name'];
 $start = $_POST['time_start'];
 $end = $_POST['time_end'];
 
@@ -23,7 +23,7 @@ echo $eventname.'<br>';
 echo $start.'<br>';
 echo $end.'<br>';
 echo $enddate.'<br>';
-echo $visitor.'<br>';
+echo 'name'.':'.$visitor.'<br>';
 echo $room_id.'<br>';
 echo $username;
 
