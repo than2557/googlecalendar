@@ -9,10 +9,10 @@ $eventname =$_POST['event'];
 $start= $_POST['start'];
 $end =$_POST['end'];
 $enddate = $_POST['enddate'];
-// $time_period=$_POST['time_period'];
+
 $room_id=$_POST['room_id'];
 $username = $_SESSION['username'];
-// $visitor = $_POST['visitor'];
+
 $visitor =$__SESSION['name'];
 $start = $_POST['time_start'];
 $end = $_POST['time_end'];
@@ -36,7 +36,7 @@ echo $strNewDateend;
 // $datecon = date_add($dateee, date_interval_create_from_date_string('1 days'));
 
 
-$sql ="INSERT INTO `event_tb`(`room_id`,`name_event`,`start`,`end`,`username`, `status_event`,`time_start`,`time_end`) VALUES ('$room_id','$eventname','$date','$enddate','$username','1','$start','$end')";
+$sql ="INSERT INTO `event_tb`(`room_id`,`name_event`,`start`,`end`,`username`, `visitor`, `status_event`,`time_start`,`time_end`) VALUES ('$room_id','$eventname','$date','$enddate','$username','$visitor','1','$start','$end')";
 $Query = mysqli_query($conn,$sql);
 echo $sql;
 

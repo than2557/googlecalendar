@@ -24,12 +24,12 @@ $room_id = $_GET['get'];
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css'>
+  <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css'> -->
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css'>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
   <link rel="stylesheet" href="css/index_admin.css">
   <link rel="stylesheet" href="js/fullcalendar-5.3.0/lib/main.css">
   <script src="js/fullcalendar-5.3.0/lib/main.min.js"></script>
@@ -39,7 +39,7 @@ $room_id = $_GET['get'];
   <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -88,12 +88,12 @@ else{
       var time_start = document.getElementById("time_start").value;
       var time_end = document.getElementById("time_end").value;
 
-      console.log(date)
-      console.log(event)
-      console.log(enddate)
-      console.log(room_id)
-      console.log(time_start)
-      console.log(time_end)
+      console.log("date:"+date)
+      console.log("event:"+event)
+      console.log("enddate:"+enddate)
+      console.log("room_id:"+room_id)
+      console.log("time_start:"+time_start)
+      console.log("time_end:"+time_end)
 
       $.ajax({
         type: "POST",
