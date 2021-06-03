@@ -146,7 +146,7 @@ $event = new Google_Service_Calendar_Event(array(
     'attendees' => array(
       // array('email' => 'sujira.kitiwieng@gmail.com'),
       array('email' => 'than2557@gmail.com'),
-      array('email'=>'15932021@aru.ac.th'),
+      array('email'=>'15932154@aru.ac.th'),
       array('email'=>'agencies.it@gmail.com')
     ),
     'reminders' => array(
