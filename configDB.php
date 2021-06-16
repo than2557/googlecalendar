@@ -6,6 +6,10 @@ define('DB_NAME', 'datameetingroomtest'); // ประกาศตัวแป�
 
 $DBconnect = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 $DBconnect-> set_charset("utf8");
+
+
+
+
 if (!$DBconnect) {
     die("การเชื่อมต่อล้มเหลว" . mysqli_connect_error());
 }

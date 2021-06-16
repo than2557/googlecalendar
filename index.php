@@ -37,11 +37,9 @@ date_default_timezone_set("Asia/Bangkok");
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
-        <script src="/index.js"/>
+        <!-- <script src="/index.js"/> -->
        
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
-
 
     <title>จองห้องประชุม</title>
 
@@ -98,7 +96,7 @@ date_default_timezone_set("Asia/Bangkok");
             <form method="post" action="login.php">
               <div class="form-group">
                 <label for="idem" class="col-form-label">ชื่อผู่ใช้:</label>
-                <input type="text" class="form-control" id="idem" name="idem">
+                <input type="text" class="form-control" id="idem" name="idem" onchange="checktextid()">
               </div>
               <div class="form-group">
                 <label for="password" class="col-form-label">รหัสผ่าน:</label>

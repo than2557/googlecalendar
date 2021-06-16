@@ -20,17 +20,21 @@
 		require('configDB.php');
 		$conn=$DBconnect;
 		include("session_check.php"); 
-	
-		$username=$_POST["idem"];
+		include("mysqli\mysqli.php");
+		$DB = new DB();
+		$username=$DB->filter($_POST["idem"]);
 		$password=md5($_POST["password"]);
-		// echo $username.'<br>';
-		// echo $password;
+	
+
 		$sql="select * from empolyee,department  where username='$username' and password='$password' and empolyee.id_department = department.id_department";
 		$Query=$conn->query($sql);
 		//echo $sql;
+		// $stmt = $conn->prepare($sql);
+		// $stmt->bind_param();
 		$rows = mysqli_num_rows($Query);
 		//echo $rows;
 		$result = $Query->fetch_assoc();
+		
 		
 		if($rows>0 && $result['level']== 0)
 		{
@@ -49,7 +53,6 @@
 			$_SESSION['username']=$username;
 			$_SESSION['id_pea']=$result['id_pea'];
 			$_SESSION['name']=$result['name'];
-		
 			$_SESSION['Department']= $result['id_department'];
 
 		?>
