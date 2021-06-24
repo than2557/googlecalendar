@@ -74,7 +74,7 @@ else{
               "sSearch": "ค้นหา:",
               "sUrl": "",
               "oPaginate": {
-                            "sFirst": "เิริ่มต้น",
+                            "sFirst": "เริ่มต้น",
                             "sPrevious": "ก่อนหน้า",
                             "sNext": "ถัดไป",
                             "sLast": "สุดท้าย"
